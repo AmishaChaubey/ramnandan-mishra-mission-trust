@@ -37,6 +37,9 @@ export default function Footer({ onDonate }) {
                 <p style={{ fontFamily: "'Cormorant Garamond',serif", color: "white", fontWeight: 600, fontSize: "1rem", margin: 0, lineHeight: 1 }}>Ramnandan Mishra</p>
                 <p style={{ fontFamily: "'Outfit',sans-serif", color: "#fcd34d", fontSize: "0.58rem", letterSpacing: "0.18em", textTransform: "uppercase", margin: "3px 0 0" }}>Mission Trust</p>
               </div>
+              <div>
+             
+              </div>
             </div>
             <p style={{ fontFamily: "'Outfit',sans-serif", color: "#93c5fd", fontSize: "0.82rem", lineHeight: 1.75, marginBottom: "1.25rem" }}>
               Carrying forward the legacy of a freedom fighter through education, welfare and service to the people of Bihar.
@@ -150,7 +153,10 @@ export default function Footer({ onDonate }) {
           <p style={{ fontFamily: "'Outfit',sans-serif", color: "#60a5fa", fontSize: "0.72rem", margin: 0, textAlign: "center" }}>
             © 2025 {TRUST_NAME}. All rights reserved. &nbsp;|&nbsp; PAN: {PAN} &nbsp;|&nbsp; DARPAN: {DARPAN}
           </p>
+        
+            
         </div>
+         <a href="https://deboxtechnology.com/"><p style={{marginTop:10,alignItems:"center",justifyContent:"center",display:"flex",color:"#efbe40"}}>Developed By Debox Technology</p></a>
 
       </div>
     </footer>

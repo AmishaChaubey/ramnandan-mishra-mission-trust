@@ -209,7 +209,7 @@ export default function Achievements() {
           {/* Right — image */}
           <div className="ach-image-wrapper">
             <img
-              src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&q=85&fit=crop"
+              src="https://i.pinimg.com/1200x/7e/0d/45/7e0d45b524c28d8fe7d22e353fe32231.jpg"
               alt="Achievement"
               className="ach-image"
             />

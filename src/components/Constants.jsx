@@ -18,10 +18,10 @@ export const NAV_LINKS = [
   { label: "Contact", id: "contact" },
 ];
 
-export const DONATE_AMOUNTS = [500, 1000, 2100, 5000, 11000, 21000];
+export const DONATE_AMOUNTS = [501, 1001, 2101, 5001, 11001, 21001];
 
 export const PROGRAMS = [
-  { title: "Primary Education",    desc: "Building literacy and numeracy foundations for underprivileged children across rural Bihar.",           color: "from-amber-500 to-orange-600",  icon: "BookOpen"  },
+  { title: "Education",    desc: "Building literacy and numeracy foundations for underprivileged students across rural Bihar.",           color: "from-amber-500 to-orange-600",  icon: "BookOpen"  },
   { title: "Skill Development",    desc: "Vocational training and workshops to prepare youth for employment and self-reliance.",                   color: "from-blue-500 to-indigo-600",   icon: "Lightbulb" },
   { title: "Scholarship Support",  desc: "Financial aid for meritorious but economically weak students to continue higher education.",             color: "from-emerald-500 to-teal-600",  icon: "Globe"     },
   { title: "Community Welfare",    desc: "Health camps, nutrition drives and welfare programs for underserved families in Bihar.",                 color: "from-rose-500 to-pink-600",     icon: "Heart"     },
@@ -40,18 +40,18 @@ export const ACHIEVEMENTS = [
 
 export const TESTIMONIALS = [
   {
-    name: "Rahul Kumar", role: "Beneficiary, Darbhanga",
-    image: "",
+    name: "Mohan Kumar", role: "Beneficiary, Darbhanga",
+    image: "https://i.pinimg.com/736x/d1/35/64/d135641590dc9c4c21e82032ece42067.jpg",
     text: "This trust helped me get books and support to complete my Class 12 exams. Without them I would have dropped out. I am forever grateful.", stars: 5,
   },
   {
-    name: "Sunita Devi", role: "Women SHG Member",
-    image: "",
+    name: "Amrita Devi", role: "Women SHG Member",
+    image: "https://i.pinimg.com/736x/95/27/98/9527986992f218aa26fee549651dd001.jpg",
     text: "The women's empowerment programme gave me confidence and a source of income. The team treats every person with dignity and genuine care.", stars: 5,
   },
   {
-    name: "Dr. Anil Jha", role: "Educator & Partner",
-    image: "",
+    name: "Dr. Lalan Jha", role: "Educator & Partner",
+    image: "https://i.pinimg.com/736x/6c/fa/a3/6cfaa3e279a01cf1b2fdc7fba7b1944c.jpg",
     text: "I have worked with many NGOs but the commitment of the RMMT team is unmatched. They work with full transparency and grassroots dedication.", stars: 5,
   },
 ];
