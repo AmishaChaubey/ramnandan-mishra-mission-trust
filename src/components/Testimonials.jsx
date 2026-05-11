@@ -1,5 +1,5 @@
 import { Star } from "lucide-react";
-import { TESTIMONIALS } from "./constants";
+import { TESTIMONIALS } from "./Constants";
 
 // ─── TESTIMONIALS SECTION ─────────────────────────────────────
 // No props needed.

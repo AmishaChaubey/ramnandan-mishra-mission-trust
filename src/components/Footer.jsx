@@ -1,6 +1,6 @@
 import { GraduationCap, Heart, MapPin } from "lucide-react";
 import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin, FaYoutube } from "react-icons/fa";
-import { TRUST_NAME, PAN, DARPAN, BANK, BRANCH, ACCOUNT, IFSC, ADDRESS } from "./constants";
+import { TRUST_NAME, PAN, DARPAN, BANK, BRANCH, ACCOUNT, IFSC, ADDRESS } from "./Constants";
 
 // ─── FOOTER ───────────────────────────────────────────────────
 // Props:

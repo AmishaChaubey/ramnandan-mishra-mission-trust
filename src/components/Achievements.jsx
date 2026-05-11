@@ -1,5 +1,5 @@
 import { CheckCircle, Building2 } from "lucide-react";
-import { ACHIEVEMENTS, BANK, BRANCH, ACCOUNT, IFSC } from "./constants";
+import { ACHIEVEMENTS, BANK, BRANCH, ACCOUNT, IFSC } from "./Constants";
 
 export default function Achievements() {
   return (

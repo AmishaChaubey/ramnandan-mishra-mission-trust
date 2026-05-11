@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { X, Heart, CheckCircle, Copy, Send } from "lucide-react";
-import { TRUST_NAME, PAN, DARPAN, ACCOUNT, IFSC, BANK, BRANCH, MOBILE, EMAIL, DONATE_AMOUNTS } from "./constants";
+import { TRUST_NAME, PAN, DARPAN, ACCOUNT, IFSC, BANK, BRANCH, MOBILE, EMAIL, DONATE_AMOUNTS } from "./Constants";
 
 const BANK_ROWS = [
   { label: "Account Name",   value: TRUST_NAME,           key: "name"   },

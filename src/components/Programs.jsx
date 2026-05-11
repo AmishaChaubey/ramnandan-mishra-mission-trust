@@ -1,5 +1,5 @@
 import { BookOpen, Lightbulb, Globe, Heart, Target, Award } from "lucide-react";
-import { PROGRAMS } from "./constants";
+import { PROGRAMS } from "./Constants";
 
 const ICON_MAP = { BookOpen, Lightbulb, Globe, Heart, Target, Award };
 

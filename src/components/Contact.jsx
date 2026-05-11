@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Phone, Mail, MapPin, CreditCard, Globe, ArrowRight, CheckCircle, XCircle, Loader } from "lucide-react";
-import { MOBILE, EMAIL, ADDRESS, PAN, DARPAN } from "./constants";
+import { MOBILE, EMAIL, ADDRESS, PAN, DARPAN } from "./Constants";
 
 const CONTACT_ITEMS = [
   { Icon: Phone,      label: "Mobile",    val: `+91 ${MOBILE}` },

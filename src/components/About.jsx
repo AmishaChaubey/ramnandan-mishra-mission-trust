@@ -1,5 +1,5 @@
 import { GraduationCap, CheckCircle, ArrowRight } from "lucide-react";
-import { PAN, DARPAN, BANK, BRANCH } from "./constants";
+import { PAN, DARPAN, BANK, BRANCH } from "./Constants";
 
 export default function About({ onDonate }) {
   const checks = [
