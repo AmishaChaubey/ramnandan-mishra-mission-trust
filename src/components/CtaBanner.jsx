@@ -201,9 +201,7 @@ export default function CtaBanner({ onDonate }) {
             </p>
 
             <div className="cta-buttons">
-              <button className="cta-btn-primary" onClick={onDonate}>
-                Donate Now <IndianRupee size={16} />
-              </button>
+           
 
               <a href="#contact" className="cta-btn-outline">
                   Volunteer With Us

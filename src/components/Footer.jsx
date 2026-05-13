@@ -34,8 +34,8 @@ export default function Footer({ onDonate }) {
           <div>
             <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1.25rem" }}>
               <div>
-                <p style={{ fontFamily: "'Cormorant Garamond',serif", color: "white", fontWeight: 600, fontSize: "1rem", margin: 0, lineHeight: 1 }}>Ramnandan Mishra</p>
-                <p style={{ fontFamily: "'Outfit',sans-serif", color: "#fcd34d", fontSize: "0.58rem", letterSpacing: "0.18em", textTransform: "uppercase", margin: "3px 0 0" }}>Mission Trust</p>
+                <p style={{ fontFamily: "'Cormorant Garamond',serif", color: "white", fontWeight: 600, fontSize: "2rem", margin: 0, lineHeight: 1 }}>Ramnandan Mishra</p>
+                <p style={{ fontFamily: "'Outfit',sans-serif", color: "#fcd34d", fontSize: "1.02rem", letterSpacing: "0.18em", textTransform: "uppercase", margin: "3px 0 0" }}>Mission Trust</p>
               </div>
               <div>
              
@@ -120,21 +120,7 @@ export default function Footer({ onDonate }) {
                 </p>
               </div>
             </div>
-            <button
-              onClick={onDonate}
-              style={{
-                fontFamily: "'Outfit',sans-serif", fontWeight: 600, fontSize: "0.8rem",
-                background: "#B8860B", color: "white", border: "none",
-                borderRadius: "9999px", padding: "0.65rem 1.25rem",
-                width: "100%", cursor: "pointer",
-                display: "flex", alignItems: "center", justifyContent: "center", gap: "6px",
-                transition: "background 0.25s",
-              }}
-              onMouseEnter={e => e.currentTarget.style.background = "#9a7209"}
-              onMouseLeave={e => e.currentTarget.style.background = "#B8860B"}
-            >
-              <Heart size={14} /> Donate Now
-            </button>
+      
           </div>
         </div>
 

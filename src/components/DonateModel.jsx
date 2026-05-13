@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { X, Heart, CheckCircle, Copy, Send } from "lucide-react";
-import { TRUST_NAME, PAN, DARPAN, ACCOUNT, IFSC, BANK, BRANCH, MOBILE, EMAIL, DONATE_AMOUNTS } from "./Constants";
+import { X, CheckCircle, Copy, Send } from "lucide-react";
+import { TRUST_NAME, PAN, DARPAN, ACCOUNT, IFSC, BANK, BRANCH, MOBILE, EMAIL } from "./Constants";
 
 const BANK_ROWS = [
   { label: "Account Name",   value: TRUST_NAME,           key: "name"   },
@@ -14,19 +14,11 @@ const BANK_ROWS = [
 const F = "'Outfit', sans-serif";
 const S = "'Cormorant Garamond', serif";
 
-// UPI / QR can be added here if needed
-const UPI_ID = ""; // e.g. "trust@sbi" — leave empty to hide UPI section
-
 export default function DonateModal({ onClose }) {
-  const [amount, setAmount]   = useState(1000);
-  const [custom, setCustom]   = useState("");
   const [copied, setCopied]   = useState("");
   const [step, setStep]       = useState("form"); // "form" | "ack" | "done"
   const [txnId, setTxnId]     = useState("");
   const [txnSent, setTxnSent] = useState(false);
-  const [payMode, setPayMode] = useState("bank"); // "bank" | "upi"
-
-  const final = custom ? (parseInt(custom) || 0) : amount;
 
   const copy = (text, key) => {
     navigator.clipboard.writeText(text);
@@ -34,7 +26,7 @@ export default function DonateModal({ onClose }) {
     setTimeout(() => setCopied(""), 2000);
   };
 
-  const handleSubmit = () => { if (final > 0) setStep("ack"); };
+  const handleSubmit = () => setStep("ack");
 
   const handleSendTxn = () => {
     if (txnId.trim()) {
@@ -75,28 +67,6 @@ export default function DonateModal({ onClose }) {
         .modal-close-btn:hover { background: rgba(255,255,255,0.28); }
         .modal-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
         .modal-body { overflow-y: auto; flex: 1; padding: 1.5rem 1.75rem; }
-        .amount-grid {
-          display: grid; grid-template-columns: repeat(3,1fr);
-          gap: 0.5rem; margin-bottom: 0.75rem;
-        }
-        .amount-btn {
-          font-family: 'Outfit', sans-serif; font-weight: 600;
-          font-size: 0.85rem; padding: 0.6rem 0;
-          border-radius: 0.75rem; cursor: pointer; transition: all 0.2s;
-        }
-        .tab-bar {
-          display: flex; gap: 0.5rem; margin-bottom: 1.25rem;
-        }
-        .tab-btn {
-          flex: 1; padding: 0.55rem 0;
-          border-radius: 0.65rem; border: 2px solid #e5e7eb;
-          font-family: 'Outfit', sans-serif; font-size: 0.82rem;
-          font-weight: 600; cursor: pointer; transition: all 0.2s;
-          background: white; color: #6b7280;
-        }
-        .tab-btn.active {
-          border-color: #1e3a8a; background: #eff6ff; color: #1e3a8a;
-        }
         .bank-row {
           display: flex; align-items: center; justify-content: space-between;
           background: #f9fafb; border: 1px solid #f3f4f6;
@@ -119,10 +89,6 @@ export default function DonateModal({ onClose }) {
         }
         .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(184,134,11,0.45); }
         .submit-btn:active { transform: translateY(0); }
-        .submit-btn:disabled {
-          background: #e5e7eb; color: #9ca3af;
-          cursor: not-allowed; transform: none; box-shadow: none;
-        }
         .txn-input {
           width: 100%; box-sizing: border-box;
           border: 2px solid #e5e7eb; border-radius: 0.75rem;
@@ -152,7 +118,6 @@ export default function DonateModal({ onClose }) {
           .modal-card { max-width: 100%; max-height: 96vh; border-radius: 1.5rem 1.5rem 0 0; }
           .modal-header { padding: 1.25rem 1.25rem 1rem; }
           .modal-body { padding: 1.25rem; }
-          .amount-grid { grid-template-columns: repeat(2,1fr); }
         }
       `}</style>
 
@@ -184,112 +149,37 @@ export default function DonateModal({ onClose }) {
 
           <div className="modal-body">
 
-            {/* ═══════════════ STEP 1 — FORM ═══════════════ */}
+            {/* ═══════════════ STEP 1 — BANK DETAILS ═══════════════ */}
             {step === "form" && (
               <>
-                <p style={{ fontFamily:F, fontSize:"0.65rem", color:"#9ca3af", letterSpacing:"0.14em", textTransform:"uppercase", marginBottom:"0.6rem", fontWeight:600 }}>
-                  Select Amount (₹)
+                <p style={{ fontFamily:F, fontSize:"0.65rem", color:"#9ca3af", letterSpacing:"0.14em", textTransform:"uppercase", marginBottom:"0.75rem", fontWeight:600 }}>
+                  Bank Transfer Details
                 </p>
 
-                <div className="amount-grid">
-                  {DONATE_AMOUNTS.map(a => (
-                    <button
-                      key={a} className="amount-btn"
-                      onClick={() => { setAmount(a); setCustom(""); }}
-                      style={{
-                        border: (!custom && amount === a) ? "2px solid #B8860B" : "2px solid #e5e7eb",
-                        background: (!custom && amount === a) ? "#fffbeb" : "white",
-                        color: (!custom && amount === a) ? "#92400e" : "#4b5563",
-                      }}
-                    >
-                      ₹{a.toLocaleString("en-IN")}
-                    </button>
-                  ))}
-                </div>
-
-                <input
-                  type="number" placeholder="Enter custom amount (₹)"
-                  value={custom}
-                  onChange={e => { setCustom(e.target.value); setAmount(0); }}
-                  style={{
-                    width:"100%", boxSizing:"border-box",
-                    border:"2px solid #e5e7eb", borderRadius:"0.75rem",
-                    padding:"0.7rem 1rem", fontFamily:F, fontSize:"0.9rem",
-                    color:"#111827", marginBottom:"1.5rem", outline:"none", transition:"border-color 0.2s",
-                  }}
-                  onFocus={e => e.target.style.borderColor = "#B8860B"}
-                  onBlur={e => e.target.style.borderColor = "#e5e7eb"}
-                />
-
-                {/* ── Payment Mode Tabs ── */}
-                <p style={{ fontFamily:F, fontSize:"0.65rem", color:"#9ca3af", letterSpacing:"0.14em", textTransform:"uppercase", marginBottom:"0.6rem", fontWeight:600 }}>
-                  Payment Method
-                </p>
-                <div className="tab-bar">
-                  <button className={`tab-btn ${payMode === "bank" ? "active" : ""}`} onClick={() => setPayMode("bank")}>
-                    🏦 Bank Transfer
-                  </button>
-                  {UPI_ID && (
-                    <button className={`tab-btn ${payMode === "upi" ? "active" : ""}`} onClick={() => setPayMode("upi")}>
-                      📱 UPI
-                    </button>
-                  )}
-                </div>
-
-                {/* ── Bank Details ── */}
-                {payMode === "bank" && (
-                  <>
-                    <div style={{ display:"flex", flexDirection:"column", gap:"0.5rem", marginBottom:"1.25rem" }}>
-                      {BANK_ROWS.map(({ label, value, key }) => (
-                        <div key={key} className="bank-row">
-                          <div style={{ minWidth:0, flex:1 }}>
-                            <p style={{ fontFamily:F, fontSize:"0.6rem", color:"#9ca3af", textTransform:"uppercase", letterSpacing:"0.08em", margin:"0 0 2px" }}>
-                              {label}
-                            </p>
-                            <p style={{ fontFamily:F, fontSize:"0.875rem", color:"#111827", fontWeight:700, margin:0, wordBreak:"break-all" }}>
-                              {value}
-                            </p>
-                          </div>
-                          <button
-                            className="copy-btn"
-                            onClick={() => copy(value, key)}
-                            style={{
-                              background: copied === key ? "#d1fae5" : "#e5e7eb",
-                              color: copied === key ? "#059669" : "#6b7280",
-                            }}
-                          >
-                            {copied === key ? <CheckCircle size={14} /> : <Copy size={14} />}
-                          </button>
-                        </div>
-                      ))}
-                    </div>
-                  </>
-                )}
-
-                {/* ── UPI Section ── */}
-                {payMode === "upi" && UPI_ID && (
-                  <div style={{ textAlign:"center", marginBottom:"1.25rem" }}>
-                    <div style={{ background:"#f9fafb", border:"1px solid #f3f4f6", borderRadius:"1rem", padding:"1.25rem", marginBottom:"0.75rem" }}>
-                      <p style={{ fontFamily:F, fontSize:"0.75rem", color:"#6b7280", marginBottom:"0.5rem" }}>Scan or pay to UPI ID</p>
-                      <p style={{ fontFamily:F, fontSize:"1.1rem", fontWeight:700, color:"#111827", margin:"0 0 0.75rem" }}>{UPI_ID}</p>
+                <div style={{ display:"flex", flexDirection:"column", gap:"0.5rem", marginBottom:"1.25rem" }}>
+                  {BANK_ROWS.map(({ label, value, key }) => (
+                    <div key={key} className="bank-row">
+                      <div style={{ minWidth:0, flex:1 }}>
+                        <p style={{ fontFamily:F, fontSize:"0.6rem", color:"#9ca3af", textTransform:"uppercase", letterSpacing:"0.08em", margin:"0 0 2px" }}>
+                          {label}
+                        </p>
+                        <p style={{ fontFamily:F, fontSize:"0.875rem", color:"#111827", fontWeight:700, margin:0, wordBreak:"break-all" }}>
+                          {value}
+                        </p>
+                      </div>
                       <button
-                        onClick={() => copy(UPI_ID, "upi")}
+                        className="copy-btn"
+                        onClick={() => copy(value, key)}
                         style={{
-                          background: copied === "upi" ? "#d1fae5" : "#e5e7eb",
-                          color: copied === "upi" ? "#059669" : "#4b5563",
-                          border:"none", borderRadius:"0.5rem", padding:"0.4rem 1rem",
-                          fontFamily:F, fontSize:"0.8rem", fontWeight:600, cursor:"pointer",
-                          display:"inline-flex", alignItems:"center", gap:"0.4rem",
+                          background: copied === key ? "#d1fae5" : "#e5e7eb",
+                          color: copied === key ? "#059669" : "#6b7280",
                         }}
                       >
-                        {copied === "upi" ? <><CheckCircle size={13}/> Copied!</> : <><Copy size={13}/> Copy UPI ID</>}
+                        {copied === key ? <CheckCircle size={14} /> : <Copy size={14} />}
                       </button>
                     </div>
-                    <p style={{ fontFamily:F, fontSize:"0.75rem", color:"#9ca3af" }}>
-                      Pay via Google Pay, PhonePe, Paytm, or any UPI app
-                    </p>
-                  </div>
-                )}
+                  ))}
+                </div>
 
                 <div style={{ background:"#fffbeb", border:"1px solid #fde68a", borderRadius:"0.75rem", padding:"0.85rem 1rem", marginBottom:"1.25rem" }}>
                   <p style={{ fontFamily:F, fontSize:"0.8rem", color:"#78350f", lineHeight:1.65, margin:0 }}>
@@ -298,22 +188,8 @@ export default function DonateModal({ onClose }) {
                   </p>
                 </div>
 
-                {final > 0 && (
-                  <div style={{
-                    background:"linear-gradient(135deg,#0f172a,#1e3a8a)",
-                    borderRadius:"0.875rem", padding:"0.9rem 1.25rem",
-                    display:"flex", alignItems:"center", justifyContent:"space-between",
-                  }}>
-                    <p style={{ fontFamily:F, color:"#93c5fd", fontSize:"0.875rem", margin:0 }}>Your donation</p>
-                    <p style={{ fontFamily:S, color:"#fbbf24", fontSize:"2rem", fontWeight:700, margin:0 }}>
-                      ₹{final.toLocaleString("en-IN")}
-                    </p>
-                  </div>
-                )}
-
-                <button className="submit-btn" onClick={handleSubmit} disabled={final <= 0}>
-                  <Heart size={18} fill="white" />
-                  Donate ₹{final > 0 ? final.toLocaleString("en-IN") : "..."} — Confirm
+                <button className="submit-btn" onClick={handleSubmit}>
+                  I've Made the Transfer — Continue
                 </button>
 
                 <p style={{ fontFamily:F, fontSize:"0.73rem", color:"#9ca3af", textAlign:"center", lineHeight:1.65, margin:"0.75rem 0 0" }}>
@@ -339,15 +215,8 @@ export default function DonateModal({ onClose }) {
                 <p style={{ fontFamily:S, fontSize:"1.6rem", fontWeight:700, color:"#111827", margin:"0 0 0.4rem" }}>
                   Thank You! 🙏
                 </p>
-                <p style={{ fontFamily:F, fontSize:"0.95rem", color:"#6b7280", margin:"0 0 0.25rem", lineHeight:1.6 }}>
-                  You are donating{" "}
-                  <strong style={{ color:"#B8860B", fontSize:"1.1rem" }}>
-                    ₹{final.toLocaleString("en-IN")}
-                  </strong>{" "}
-                  to {TRUST_NAME}.
-                </p>
-                <p style={{ fontFamily:F, fontSize:"0.85rem", color:"#9ca3af", margin:"0 0 1.5rem", lineHeight:1.6 }}>
-                  Your contribution will help build a better tomorrow.
+                <p style={{ fontFamily:F, fontSize:"0.95rem", color:"#6b7280", margin:"0 0 1.5rem", lineHeight:1.6 }}>
+                  Your contribution to {TRUST_NAME} will help build a better tomorrow.
                 </p>
 
                 <div style={{ borderTop:"1px dashed #e5e7eb", margin:"0 0 1.25rem" }} />
@@ -397,19 +266,9 @@ export default function DonateModal({ onClose }) {
                 <p style={{ fontFamily:S, fontSize:"1.7rem", fontWeight:700, color:"#111827", margin:"0 0 0.5rem" }}>
                   Donation Confirmed!
                 </p>
-
-                <div style={{
-                  background:"linear-gradient(135deg,#0f172a,#1e3a8a)",
-                  borderRadius:"1rem", padding:"1rem 1.25rem", margin:"0.75rem 0 1.25rem",
-                }}>
-                  <p style={{ fontFamily:F, color:"#93c5fd", fontSize:"0.8rem", margin:"0 0 4px" }}>Donated Amount</p>
-                  <p style={{ fontFamily:S, color:"#fbbf24", fontSize:"2.2rem", fontWeight:700, margin:0 }}>
-                    ₹{final.toLocaleString("en-IN")}
-                  </p>
-                  <p style={{ fontFamily:F, color:"#64748b", fontSize:"0.75rem", margin:"6px 0 0" }}>
-                    {TRUST_NAME}
-                  </p>
-                </div>
+                <p style={{ fontFamily:F, fontSize:"0.9rem", color:"#6b7280", margin:"0 0 1.25rem", lineHeight:1.6 }}>
+                  Thank you for your generous support to {TRUST_NAME}.
+                </p>
 
                 {txnId.trim() && (
                   <div style={{ background:"#f0fdf4", border:"1px solid #bbf7d0", borderRadius:"0.75rem", padding:"0.75rem 1rem", marginBottom:"1rem" }}>

@@ -5,6 +5,57 @@ export default function Achievements() {
   return (
     <>
       <style>{`
+
+
+
+      .pq-section {
+  position: relative;
+  width: 100%;
+  min-height: 420px;
+  overflow: hidden;
+}
+
+.pq-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  z-index: 2;
+}
+
+.pq-text {
+  position: relative;
+  z-index: 3;
+  max-width: 850px;
+  text-align: center;
+}
+
+.pq-quote-mark {
+  font-size: 5rem;
+  color: #fbbf24;
+  margin: 0;
+  line-height: 1;
+}
+
+.pq-body {
+  color: white;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.5rem, 4vw, 3rem);
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.pq-attr {
+  margin-top: 1rem;
+  color: #fbbf24;
+  font-family: 'Outfit', sans-serif;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+}
         .ach-section {
           padding: 7rem 0;
           background: white;
@@ -231,7 +282,7 @@ export default function Achievements() {
         <img
           src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=1800&q=85&fit=crop"
           alt="Education"
-          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
+          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover",zIndex:0 }}
         />
         <div className="pq-overlay">
           <div className="pq-text">

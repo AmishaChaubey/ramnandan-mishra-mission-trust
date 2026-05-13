@@ -1,20 +1,46 @@
 export default function FounderSection() {
   const timelineItems = [
     {
-      year: "1905 — Born · Darbhanga",
-      text: "Member of Bihar Pradesh Congress Committee (1927–1934). Participated in the Civil Disobedience Movement; imprisoned in 1930–31.",
+      year: "1905",
+      label: "Born · Darbhanga",
+      icon: "✦",
+      accent: "#f5c842",
+      text: "Born in Darbhanga, he imbibed values of courage from a young age. Member of Bihar Pradesh Congress Committee (1927–1934).",
     },
     {
-      year: "1942 — Quit India Movement",
-      text: "Founding member of the Congress Socialist Party. Famously escaped from Hazaribagh Central Jail alongside Jayaprakash Narayan and Yogendra Shukla in November 1942.",
+      year: "1930–31",
+      label: "Civil Disobedience",
+      icon: "⚑",
+      accent: "#f97316",
+      text: "Participated in Gandhi's Civil Disobedience Movement. Arrested and imprisoned in 1930–31, emerging more resolute than ever.",
     },
     {
-      year: "1949–52 — Kisan Leadership",
-      text: "General Secretary of Hind Kisan Panchayat, Bihar. Left politics for spiritual life in 1952, becoming a lifelong devotee of Lord Jagannath.",
+      year: "1942",
+      label: "Quit India Movement",
+      icon: "⚔",
+      accent: "#f43f5e",
+      text: "Dramatically escaped from Hazaribagh Central Jail alongside Jayaprakash Narayan and Yogendra Shukla in November 1942.",
     },
     {
-      year: "1989 — Passed Away",
-      text: "Departed on 27 August 1989, leaving behind a legacy of courage, sacrifice, and spiritual devotion.",
+      year: "1949–52",
+      label: "Kisan Leadership",
+      icon: "❧",
+      accent: "#a78bfa",
+      text: "General Secretary of Hind Kisan Panchayat, Bihar. Championed farmers' rights and gave voice to rural communities.",
+    },
+    {
+      year: "1952",
+      label: "Spiritual Awakening",
+      icon: "☸",
+      accent: "#38bdf8",
+      text: "Renounced politics and became a lifelong devotee of Lord Jagannath — a soul at peace after a lifetime of sacrifice.",
+    },
+    {
+      year: "1989",
+      label: "Passed Away",
+      icon: "✿",
+      accent: "#f43f5e",
+      text: "Departed on 27 August 1989, leaving behind an eternal legacy of courage, sacrifice, and spiritual devotion that continues to inspire generations.",
     },
   ];
 
@@ -25,500 +51,391 @@ export default function FounderSection() {
     { year: "1952", label: "Spiritual" },
   ];
 
+  const trustees = [
+    {
+      name: "Dr. Vidya Nath Jha",
+      role: "Trustee",
+      title: "Principal, M L S M College Darbhanga",
+      image: "/image/img6.jpeg",
+      bio: "Academic leader steering trust programs in education and community welfare.",
+      tags: ["Academic", "Social Reformer", "Community Leader"],
+    },
+    {
+      name: "Dr. Prof. Binod Kumar",
+      role: "Trustee",
+      title: "Asst. Professor, M G College Darbhanga",
+      image: "/image/img2.jpeg",
+      bio: "Drives grassroots education and rural outreach initiatives across Bihar.",
+      tags: ["Education", "Rural Welfare", "Leadership"],
+    },
+    {
+      name: "Dr. Paras Mani Singh",
+      role: "Trustee",
+      title: "Teacher, Govt. Higher Secondary School, Benipur Darbhanga",
+      image: "/image/img3.jpeg",
+      bio: "Oversees trust administration and ensures ground-level programs run seamlessly.",
+      tags: ["Administration", "Outreach", "Strategy"],
+    },
+    {
+      name: "Ghanshyam Kumar Jha",
+      role: "Trustee",
+      title: "Asst. Professor, Oriental College of Education Darbhanga",
+      image: "/image/img5.jpeg",
+      bio: "Manages financial stewardship to ensure every contribution creates maximum impact.",
+      tags: ["Finance", "Governance", "Transparency"],
+    },
+  ];
+
   return (
     <>
       <style>{`
-        /* ── Pull Quote ── */
-        .pq-section {
-          position: relative;
-          min-height: 260px;
-          overflow: hidden;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-        .pq-overlay {
-          position: absolute;
-          inset: 0;
-          background: rgba(10,15,35,0.85);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          padding: 2.5rem 1.5rem;
-        }
-        .pq-text {
-          text-align: center;
-          max-width: 700px;
-          width: 100%;
-        }
-        .pq-quote-mark {
-          font-size: 2.2rem;
-          color: #fbbf24;
-          opacity: 0.6;
-          font-family: Georgia, serif;
-          margin-bottom: 0.4rem;
-          line-height: 1;
-        }
-        .pq-body {
-          font-family: 'Cormorant Garamond', serif;
-          color: #fff;
-          font-size: clamp(1rem, 2.5vw, 1.65rem);
-          font-weight: 300;
-          font-style: italic;
-          line-height: 1.65;
-          margin: 0;
-        }
-        .pq-attr {
-          font-family: 'Outfit', sans-serif;
-          font-size: 0.62rem;
-          letter-spacing: 0.18em;
-          text-transform: uppercase;
-          color: #fbbf24;
-          font-weight: 600;
-          margin-top: 1.1rem;
-          margin-bottom: 0;
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap');
 
-        /* ── Main section ── */
-        .founder-section {
-          background: #0a0f23;
-          padding: 4rem 0 3rem;
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        .fs-root {
+          background: #060810;
+          padding: 6rem 0 5rem;
           width: 100%;
-          box-sizing: border-box;
+          font-family: 'DM Sans', sans-serif;
+          position: relative;
+          overflow: hidden;
         }
-        .founder-wrapper {
-          max-width: 1200px;
+        .fs-bg-blob1 {
+          position: absolute; top: -10%; left: -5%;
+          width: 55vw; height: 55vw; max-width: 700px; max-height: 700px;
+          background: radial-gradient(ellipse at center, rgba(184,134,11,0.055) 0%, transparent 65%);
+          pointer-events: none;
+        }
+        .fs-bg-blob2 {
+          position: absolute; bottom: 5%; right: -10%;
+          width: 60vw; height: 60vw; max-width: 800px; max-height: 800px;
+          background: radial-gradient(ellipse at center, rgba(99,102,241,0.04) 0%, transparent 65%);
+          pointer-events: none;
+        }
+        .fs-bg-grid {
+          position: absolute; inset: 0;
+          background-image: linear-gradient(rgba(255,255,255,0.012) 1px, transparent 1px),
+                            linear-gradient(90deg, rgba(255,255,255,0.012) 1px, transparent 1px);
+          background-size: 60px 60px;
+          pointer-events: none;
+        }
+        .fs-wrap {
+          max-width: 1240px;
           margin: 0 auto;
-          padding: 0 1.5rem;
-          box-sizing: border-box;
-          width: 100%;
-        }
-
-        /* ── Founder row ── */
-        .founder-row {
-          display: grid;
-          grid-template-columns: 1fr 1.6fr;
-          gap: 3.5rem;
-          align-items: center;
-          margin-bottom: 4.5rem;
-        }
-
-        /* ── Photo col ── */
-        .photo-col {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          gap: 0;
-        }
-        .photo-frame {
-          position: relative;
-          width: 240px;
-          height: 290px;
-          flex-shrink: 0;
-        }
-        .photo-ring-outer {
-          position: absolute;
-          inset: -22px;
-          border-radius: 5%;
-          border: 1px solid rgba(184,134,11,0.08);
-        }
-        .photo-ring-inner {
-          position: absolute;
-          inset: -10px;
-          border-radius: 5%;
-          border: 1px solid rgba(184,134,11,0.2);
-        }
-        .photo-img-wrap {
-          width: 240px;
-          height: 290px;
-          border-radius: 5%;
-          border: 3px solid #B8860B;
-          overflow: hidden;
+          padding: 0 2rem;
           position: relative;
           z-index: 1;
         }
-        .photo-img-wrap img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          display: block;
-        }
-        .photo-badge {
-          margin-top: -14px;
-          position: relative;
-          z-index: 2;
-        }
-        .photo-badge span {
-          display: inline-block;
-          background: #B8860B;
-          color: #0f172a;
-          font-family: 'Outfit', sans-serif;
-          font-weight: 700;
-          font-size: 0.58rem;
-          padding: 0.32rem 1.1rem;
+
+        /* ── CHIP ── */
+        .fs-chip {
+          display: inline-flex; align-items: center; gap: 0.55rem;
+          background: rgba(184,134,11,0.1);
+          border: 1px solid rgba(184,134,11,0.25);
           border-radius: 9999px;
-          letter-spacing: 0.09em;
-          text-transform: uppercase;
-          white-space: nowrap;
+          padding: 0.3rem 1rem;
+          font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase;
+          color: #fbbf24; font-weight: 700;
+          margin-bottom: 1rem;
+        }
+        .fs-chip::before { content: '◆'; font-size: 0.35rem; opacity: 0.7; }
+
+        /* ── DIVIDER ── */
+        .sec-div {
+          display: flex; align-items: center; gap: 1.2rem;
+          margin: 5rem 0 3rem;
+        }
+        .sec-div-line {
+          flex: 1; height: 1px;
+          background: linear-gradient(to right, transparent, rgba(184,134,11,0.25), transparent);
+        }
+        .sec-div-text {
+          font-size: 0.58rem; letter-spacing: 0.22em; text-transform: uppercase;
+          color: #fbbf24; font-weight: 700; white-space: nowrap;
+        }
+
+        /* ════ FOUNDER HERO ════ */
+        .founder-hero {
+          display: grid;
+          grid-template-columns: 260px 1fr;
+          gap: 5rem;
+          align-items: flex-start;
+        }
+        .photo-col {
+          display: flex; flex-direction: column; align-items: center;
+          position: sticky; top: 2rem;
+        }
+        .photo-outer-ring {
+          position: relative;
+          padding: 10px;
+          background: linear-gradient(145deg, rgba(184,134,11,0.3), rgba(184,134,11,0.05), rgba(184,134,11,0.2));
+          border-radius: 18px;
+          margin-bottom: 1rem;
+        }
+        .photo-outer-ring::before {
+          content: ''; position: absolute; inset: -1px; border-radius: 19px;
+          background: linear-gradient(145deg, #B8860B55, transparent, #f5c84233);
+          z-index: -1;
+        }
+        .photo-outer-ring::after {
+          content: ''; position: absolute; inset: -14px; border-radius: 22px;
+          border: 1px dashed rgba(184,134,11,0.18); pointer-events: none;
+        }
+        .photo-img-wrap {
+          width: 210px; height: 265px; border-radius: 12px;
+          overflow: hidden; background: #1a1a2e;
+        }
+        .photo-img-wrap img {
+          width: 100%; height: 100%; object-fit: cover; display: block;
+          filter: sepia(10%) contrast(1.05);
+        }
+        .photo-name-tag { text-align: center; margin-bottom: 0.9rem; }
+        .pnt-name {
+          display: block; font-family: 'Playfair Display', serif;
+          color: #fff; font-size: 0.95rem; font-weight: 600;
+          line-height: 1.3; margin-bottom: 0.25rem;
+        }
+        .pnt-years {
+          font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase;
+          color: #fbbf24; font-weight: 600;
+          background: rgba(251,191,36,0.08); border: 1px solid rgba(251,191,36,0.2);
+          border-radius: 9999px; padding: 0.22rem 0.8rem; display: inline-block;
         }
         .milestones-row {
-          display: flex;
-          width: 100%;
-          max-width: 260px;
-          margin-top: 1.5rem;
-          border: 1px solid rgba(184,134,11,0.2);
-          border-radius: 10px;
-          overflow: hidden;
+          display: grid; grid-template-columns: repeat(4, 1fr);
+          width: 100%; max-width: 240px;
+          background: rgba(255,255,255,0.03);
+          border: 1px solid rgba(184,134,11,0.18);
+          border-radius: 12px; overflow: hidden;
         }
         .milestone-cell {
-          flex: 1;
-          padding: 0.7rem 0.4rem;
-          text-align: center;
-          background: rgba(184,134,11,0.05);
-          border-right: 1px solid rgba(184,134,11,0.2);
-          min-width: 0;
+          padding: 0.65rem 0.2rem; text-align: center;
+          border-right: 1px solid rgba(184,134,11,0.12); transition: background 0.2s;
         }
         .milestone-cell:last-child { border-right: none; }
-        .milestone-year {
-          display: block;
-          color: #fbbf24;
-          font-size: 0.68rem;
-          font-weight: 700;
+        .milestone-cell:hover { background: rgba(184,134,11,0.07); }
+        .milestone-year { display: block; color: #fbbf24; font-size: 0.62rem; font-weight: 700; }
+        .milestone-label { display: block; color: rgba(255,255,255,0.38); font-size: 0.42rem; letter-spacing: 0.05em; text-transform: uppercase; margin-top: 3px; }
+
+        .text-col .hero-title {
+          font-family: 'Playfair Display', serif; color: #fff;
+          font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 400; line-height: 1.1;
+          margin: 0.5rem 0 0.5rem;
         }
-        .milestone-label {
-          display: block;
-          color: rgba(255,255,255,0.45);
-          font-size: 0.5rem;
-          letter-spacing: 0.05em;
-          margin-top: 2px;
+        .text-col .hero-title em { font-style: italic; color: #fbbf24; }
+        .text-col .hero-sub {
+          color: rgba(191,219,254,0.5); font-size: 0.8rem; font-style: italic; margin-bottom: 2rem;
         }
 
-        /* ── Text col ── */
-        .text-col .tag {
-          display: block;
-          font-family: 'Outfit', sans-serif;
-          font-size: 0.62rem;
-          letter-spacing: 0.2em;
-          text-transform: uppercase;
-          color: #fbbf24;
-          font-weight: 600;
-          margin-bottom: 0.6rem;
+        /* ── TIMELINE CARDS ── */
+        .tl-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+        .tl-card {
+          position: relative; border-radius: 16px;
+          padding: 1.1rem 1.1rem 1.1rem 1.4rem;
+          background: rgba(255,255,255,0.028); border: 1px solid rgba(255,255,255,0.06);
+          overflow: hidden; transition: transform 0.25s ease, box-shadow 0.25s ease;
         }
-        .text-col h2 {
-          font-family: 'Cormorant Garamond', serif;
-          color: #fff;
-          font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-          font-weight: 300;
-          line-height: 1.15;
-          margin-bottom: 1.75rem;
-          margin-top: 0;
-        }
-        .timeline {
-          border-left: 2px solid rgba(251,191,36,0.25);
-          padding-left: 1.25rem;
-        }
-        .timeline-item {
-          position: relative;
-        }
-        .timeline-dot {
-          position: absolute;
-          left: -1.47rem;
-          top: 5px;
-          width: 10px;
-          height: 10px;
-          border-radius: 50%;
-          background: #B8860B;
-          border: 2px solid #0a0f23;
-          flex-shrink: 0;
-        }
-        .timeline-year {
-          font-family: 'Outfit', sans-serif;
-          color: #fbbf24;
-          font-size: 0.65rem;
-          font-weight: 700;
-          letter-spacing: 0.06em;
-          margin-bottom: 3px;
-          margin-top: 0;
-        }
-        .timeline-text {
-          font-family: 'Outfit', sans-serif;
-          color: rgba(191,219,254,0.85);
-          font-size: clamp(0.75rem, 1.5vw, 0.82rem);
-          line-height: 1.7;
-          margin-top: 0;
-        }
+        .tl-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.5); }
+        .tl-card-bar { position: absolute; top: 0; left: 0; bottom: 0; width: 3px; border-radius: 16px 0 0 16px; }
+        .tl-top { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.5rem; }
+        .tl-icon { width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.72rem; flex-shrink: 0; }
+        .tl-year { font-size: 0.7rem; font-weight: 800; letter-spacing: 0.06em; line-height: 1; }
+        .tl-label { font-size: 0.52rem; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; opacity: 0.6; margin-top: 2px; }
+        .tl-text { color: rgba(191,219,254,0.72); font-size: 0.76rem; line-height: 1.75; }
+        .tl-full { grid-column: 1 / -1; }
 
-        /* ── Divider ── */
-        .section-divider {
-          display: flex;
-          align-items: center;
-          gap: 1rem;
-          margin-bottom: 3rem;
+        /* ════ FOUNDER CARD ════ */
+        .founder-card {
+          position: relative; border-radius: 24px; overflow: hidden;
+          background: linear-gradient(135deg, #0c1225, #111d3d 50%, #0c1225);
+          border: 1px solid rgba(184,134,11,0.2);
+          display: grid; grid-template-columns: 240px 1fr;
         }
-        .divider-line {
-          flex: 1;
-          height: 1px;
-          background: rgba(255,255,255,0.08);
+        .founder-card::before {
+          content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+          background: linear-gradient(to right, transparent, #B8860B, #fbbf24, #B8860B, transparent);
         }
-        .divider-text {
-          font-family: 'Outfit', sans-serif;
-          font-size: 0.62rem;
-          letter-spacing: 0.22em;
-          text-transform: uppercase;
-          color: #fbbf24;
-          font-weight: 600;
-          white-space: nowrap;
+        .fc-left {
+          padding: 2.5rem 1.75rem; display: flex; flex-direction: column; align-items: center; gap: 1rem;
+          border-right: 1px solid rgba(184,134,11,0.12); background: rgba(0,0,0,0.18);
         }
+        .fc-photo { width: 180px; height: 200px; border-radius: 12px; border: 2px solid #B8860B; overflow: hidden; }
+        .fc-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .fc-badge {
+          font-size: 0.55rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase;
+          background: linear-gradient(135deg, #92670a, #fbbf24);
+          color: #07091a; padding: 0.25rem 0.9rem; border-radius: 9999px;
+        }
+        .fc-right { padding: 2.5rem 2.25rem; }
+        .fc-eyebrow { font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; color: #fbbf24; font-weight: 700; margin-bottom: 0.4rem; }
+        .fc-name { font-family: 'Playfair Display', serif; color: #fff; font-size: clamp(1.4rem, 2.8vw, 2rem); font-weight: 600; line-height: 1.15; margin-bottom: 0.3rem; }
+        .fc-title { color: #fcd34d; font-size: 0.73rem; margin-bottom: 1rem; font-weight: 500; }
+        .fc-divider { width: 44px; height: 2px; background: linear-gradient(to right, #B8860B, #fbbf24); border-radius: 1px; margin-bottom: 1rem; }
+        .fc-bio { color: rgba(191,219,254,0.8); font-size: 0.84rem; line-height: 1.85; margin-bottom: 1.25rem; }
+        .fc-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+        .fc-pill {
+          font-size: 0.6rem; font-weight: 600; padding: 0.28rem 0.85rem;
+          border-radius: 9999px; border: 1px solid rgba(251,191,36,0.28);
+          color: #fbbf24; background: rgba(251,191,36,0.05); transition: background 0.2s;
+        }
+        .fc-pill:hover { background: rgba(251,191,36,0.12); }
 
-        /* ── Trustee card ── */
-        .trustee-border {
-          padding: 2px;
-          border-radius: 20px;
-          background: linear-gradient(135deg,#7a5400 0%,#f5c842 40%,#f0a800 60%,#7a5400 100%);
+        /* ════ EXECUTIVE TRUSTEE ════ */
+        .trustee-wrap {
+          padding: 2px; border-radius: 24px;
+          background: linear-gradient(135deg, #7a5400, #f5c842, #f0a800, #7a5400);
         }
         .trustee-inner {
-          background: #0d1428;
-          border-radius: 18px;
-          overflow: hidden;
+          background: #0d1428; border-radius: 22px; overflow: hidden;
+          display: grid; grid-template-columns: 300px 1fr;
+        }
+        .et-left {
+          background: linear-gradient(175deg, #111d3d 0%, #0a1228 100%);
+          border-right: 1px solid rgba(184,134,11,0.18);
+          padding: 2.8rem 2rem;
+          display: flex; flex-direction: column; align-items: center; gap: 1.2rem;
+        }
+        .et-photo {
+          width: 200px; height: 200px; border-radius: 50%;
+          border: 3px solid #B8860B; overflow: hidden;
+          box-shadow: 0 0 0 7px rgba(184,134,11,0.1), 0 0 40px rgba(184,134,11,0.12);
+        }
+        .et-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .et-badge {
+          background: rgba(184,134,11,0.1); border: 1px solid rgba(184,134,11,0.3);
+          color: #fbbf24; font-size: 0.58rem; font-weight: 700;
+          letter-spacing: 0.1em; text-transform: uppercase;
+          padding: 0.3rem 1rem; border-radius: 9999px;
+        }
+        .et-focus-list { width: 100%; display: flex; flex-direction: column; gap: 0.5rem; }
+        .et-focus-item {
+          display: flex; align-items: center; gap: 0.65rem;
+          padding: 0.55rem 0.8rem;
+          background: rgba(251,191,36,0.04); border: 1px solid rgba(251,191,36,0.1); border-radius: 10px;
+        }
+        .et-focus-dot { width: 5px; height: 5px; border-radius: 50%; background: #fbbf24; flex-shrink: 0; opacity: 0.8; }
+        .et-focus-text { color: rgba(191,219,254,0.7); font-size: 0.7rem; }
+        .et-right { padding: 2.8rem 2.5rem; display: flex; flex-direction: column; justify-content: center; }
+        .et-tag { font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; color: #fbbf24; font-weight: 700; margin-bottom: 0.45rem; }
+        .et-name { font-family: 'Playfair Display', serif; color: #fff; font-size: clamp(1.3rem, 2.5vw, 2rem); font-weight: 600; line-height: 1.15; margin-bottom: 0.3rem; }
+        .et-title { color: #fcd34d; font-size: 0.73rem; margin-bottom: 1rem; font-weight: 500; }
+        .et-divider { width: 44px; height: 2px; background: linear-gradient(to right, #B8860B, #fbbf24); border-radius: 1px; margin-bottom: 1rem; }
+        .et-bio { color: rgba(191,219,254,0.8); font-size: 0.84rem; line-height: 1.85; margin-bottom: 1.2rem; }
+        .et-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+        .et-pill { font-size: 0.6rem; font-weight: 600; padding: 0.28rem 0.85rem; border-radius: 9999px; border: 1px solid rgba(251,191,36,0.28); color: #fbbf24; background: rgba(251,191,36,0.05); }
+
+        /* ════ TEAM GRID ════ */
+        .members-grid {
           display: grid;
-          grid-template-columns: 320px 1fr;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 1.25rem;
         }
-        .trustee-left {
-          background: linear-gradient(180deg,#111d3d 0%,#0a1228 100%);
-          border-right: 1px solid rgba(184,134,11,0.2);
-          padding: 2.5rem 1.5rem;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          gap: 1.2rem;
+        .member-card {
+          border-radius: 20px; overflow: hidden;
+          background: linear-gradient(160deg, #0d1428, #0a1020);
+          border: 1px solid rgba(184,134,11,0.14);
+          transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+          display: flex; flex-direction: column;
         }
-        .trustee-photo {
-          width: 160px;
-          height: 160px;
-          border-radius: 50%;
-          border: 3px solid #B8860B;
-          overflow: hidden;
-          flex-shrink: 0;
+        .member-card:hover {
+          transform: translateY(-6px);
+          border-color: rgba(184,134,11,0.38);
+          box-shadow: 0 20px 50px rgba(0,0,0,0.55), 0 0 30px rgba(184,134,11,0.07);
         }
-        .trustee-photo img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          display: block;
+        /* Banner photo */
+        .member-photo-area {
+          width: 100%; height: 290px;
+          overflow: hidden; position: relative; flex-shrink: 0;
         }
-        .trustee-badge {
-          background: rgba(184,134,11,0.12);
-          border: 1px solid rgba(184,134,11,0.35);
-          color: #fbbf24;
-          font-size: 0.6rem;
-          font-weight: 700;
-          letter-spacing: 0.1em;
-          text-transform: uppercase;
-          padding: 0.28rem 0.9rem;
-          border-radius: 9999px;
-          white-space: nowrap;
-          font-family: 'Outfit', sans-serif;
+        .member-photo-area::after {
+          content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 65px;
+          background: linear-gradient(to bottom, transparent, #0d1428);
+          pointer-events: none;
         }
-        .trustee-stats {
-          width: 100%;
-          display: flex;
-          flex-direction: column;
-          gap: 0.5rem;
+        .member-photo-area img {
+          width: 100%; height: 100%;
+          object-fit: cover; object-position: top; display: block;
+          transition: transform 0.4s ease;
         }
-        .trustee-stat-item {
-          display: flex;
-          align-items: center;
-          gap: 0.6rem;
-          padding: 0.5rem 0.75rem;
-          background: rgba(251,191,36,0.05);
-          border-radius: 8px;
-          border: 1px solid rgba(251,191,36,0.1);
+        .member-card:hover .member-photo-area img { transform: scale(1.06); }
+        .member-body { padding: 0.85rem 1.2rem 1.4rem; text-align: center; flex: 1; display: flex; flex-direction: column; }
+        .member-role-badge {
+          display: inline-block; font-size: 0.48rem; font-weight: 700;
+          letter-spacing: 0.12em; text-transform: uppercase;
+          color: #fbbf24; background: rgba(251,191,36,0.08);
+          border: 1px solid rgba(251,191,36,0.2);
+          padding: 0.18rem 0.65rem; border-radius: 9999px; margin-bottom: 0.4rem;
         }
-        .trustee-stat-icon { color: #fbbf24; font-size: 0.75rem; }
-        .trustee-stat-label {
-          color: rgba(191,219,254,0.7);
-          font-size: clamp(0.65rem, 1.2vw, 0.7rem);
-          font-family: 'Outfit', sans-serif;
+        .member-name {
+          font-family: 'Playfair Display', serif; color: #fff;
+          font-size: clamp(0.88rem, 1.5vw, 1rem); font-weight: 600;
+          line-height: 1.3; margin-bottom: 0.3rem;
         }
-        .trustee-right {
-          padding: 2.5rem 2rem;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
+        .member-title-text {
+          color: rgba(252,211,77,0.72); font-size: 0.62rem; line-height: 1.45; margin-bottom: 0.6rem;
         }
-        .trustee-tag {
-          font-family: 'Outfit', sans-serif;
-          font-size: 0.6rem;
-          letter-spacing: 0.2em;
-          text-transform: uppercase;
-          color: #fbbf24;
-          font-weight: 600;
-          margin-bottom: 0.5rem;
-          margin-top: 0;
-        }
-        .trustee-name {
-          font-family: 'Cormorant Garamond', serif;
-          color: #fff;
-          font-size: clamp(1.2rem, 2.5vw, 1.9rem);
-          font-weight: 600;
-          line-height: 1.15;
-          margin-bottom: 0.3rem;
-          margin-top: 0;
-        }
-        .trustee-title {
-          font-family: 'Outfit', sans-serif;
-          color: #fcd34d;
-          font-size: clamp(0.7rem, 1.3vw, 0.76rem);
-          margin-bottom: 1.1rem;
-          margin-top: 0;
-        }
-        .trustee-divider {
-          width: 40px;
-          height: 2px;
-          background: #B8860B;
-          border-radius: 1px;
-          margin-bottom: 1.1rem;
-        }
-        .trustee-bio {
-          font-family: 'Outfit', sans-serif;
-          color: rgba(191,219,254,0.8);
-          font-size: clamp(0.78rem, 1.4vw, 0.84rem);
-          line-height: 1.85;
-          margin-bottom: 1.4rem;
-          margin-top: 0;
-        }
-        .trustee-tags {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 0.5rem;
-        }
-        .trustee-tag-pill {
-          font-family: 'Outfit', sans-serif;
-          font-size: 0.64rem;
-          font-weight: 600;
-          padding: 0.28rem 0.85rem;
-          border-radius: 9999px;
-          border: 1px solid rgba(251,191,36,0.3);
-          color: #fbbf24;
-          letter-spacing: 0.04em;
-        }
+        .member-divider { width: 28px; height: 1.5px; background: linear-gradient(to right, #B8860B, #fbbf24); border-radius: 1px; margin: 0 auto 0.65rem; }
+        .member-bio { color: rgba(191,219,254,0.62); font-size: 0.71rem; line-height: 1.7; margin-bottom: 0.9rem; flex: 1; }
+        .member-tags { display: flex; flex-wrap: wrap; gap: 0.3rem; justify-content: center; margin-top: auto; }
+        .member-tag { font-size: 0.5rem; font-weight: 600; padding: 0.18rem 0.6rem; border-radius: 9999px; border: 1px solid rgba(251,191,36,0.2); color: rgba(251,191,36,0.8); }
 
-        /* ── RESPONSIVE ── */
-
-        /* Medium desktop */
-        @media (max-width: 1100px) {
-          .trustee-inner {
-            grid-template-columns: 260px 1fr;
-          }
+        /* ════ RESPONSIVE ════ */
+        @media (max-width: 1080px) {
+          .members-grid { grid-template-columns: repeat(2, 1fr); }
+          .trustee-inner { grid-template-columns: 260px 1fr; }
         }
-
-        /* Tablet */
         @media (max-width: 900px) {
-          .founder-row {
-            grid-template-columns: 1fr;
-            gap: 2.5rem;
-            margin-bottom: 3rem;
-          }
-          .photo-col {
-            align-items: center;
-          }
-          .trustee-inner {
-            grid-template-columns: 1fr;
-          }
-          .trustee-left {
-            border-right: none;
-            border-bottom: 1px solid rgba(184,134,11,0.2);
-            padding: 2rem 1.5rem;
-          }
-          .trustee-stats {
-            flex-direction: row;
-            flex-wrap: wrap;
-            justify-content: center;
-          }
-          .trustee-stat-item {
-            flex: 1;
-            min-width: 140px;
-            justify-content: center;
-          }
-          .trustee-right {
-            padding: 2rem 1.5rem;
-          }
+          .founder-hero { grid-template-columns: 1fr; gap: 3rem; }
+          .photo-col { position: static; align-items: center; }
+          .founder-card { grid-template-columns: 1fr; }
+          .fc-left { border-right: none; border-bottom: 1px solid rgba(184,134,11,0.12); }
+          .trustee-inner { grid-template-columns: 1fr; }
+          .et-left { border-right: none; border-bottom: 1px solid rgba(184,134,11,0.18); }
+          .et-focus-list { flex-direction: row; flex-wrap: wrap; justify-content: center; }
+          .et-focus-item { flex: 1; min-width: 130px; justify-content: center; }
         }
-
-        /* Small tablet */
         @media (max-width: 680px) {
-          .founder-wrapper { padding: 0 1.25rem; }
-          .founder-section { padding: 3rem 0 2rem; }
-          .photo-frame {
-            width: 200px;
-            height: 245px;
-          }
-          .photo-img-wrap {
-            width: 200px;
-            height: 245px;
-          }
-          .milestones-row { max-width: 220px; }
-          .milestone-year { font-size: 0.6rem; }
-          .milestone-label { font-size: 0.45rem; }
-          .trustee-border { border-radius: 16px; }
-          .trustee-inner { border-radius: 14px; }
+          .fs-root { padding: 3.5rem 0 3rem; }
+          .fs-wrap { padding: 0 1.25rem; }
+          .tl-grid { grid-template-columns: 1fr; }
+          .tl-full { grid-column: 1; }
+          .photo-img-wrap { width: 185px; height: 235px; }
+          .members-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+          .sec-div { margin: 3.5rem 0 2.5rem; }
+          .member-photo-area { height: 295px; }
         }
-
-        /* Mobile */
         @media (max-width: 480px) {
-          .founder-wrapper { padding: 0 1rem; }
-          .founder-section { padding: 2.5rem 0 1.5rem; }
-          .founder-row { gap: 2rem; margin-bottom: 2.5rem; }
-          .photo-frame {
-            width: 180px;
-            height: 220px;
-          }
-          .photo-img-wrap {
-            width: 180px;
-            height: 220px;
-          }
-          .photo-ring-outer { inset: -14px; }
-          .photo-ring-inner { inset: -7px; }
-          .milestones-row { max-width: 200px; }
-          .milestone-cell { padding: 0.55rem 0.2rem; }
-          .trustee-left { padding: 1.5rem 1rem; }
-          .trustee-right { padding: 1.5rem 1rem; }
-          .trustee-photo { width: 130px; height: 130px; }
-          .trustee-stat-item { min-width: 100px; }
-          .trustee-border { border-radius: 14px; }
-          .trustee-inner { border-radius: 12px; }
-          .section-divider { margin-bottom: 2rem; }
-        }
-
-        /* Very small */
-        @media (max-width: 360px) {
-          .founder-wrapper { padding: 0 0.75rem; }
-          .photo-frame { width: 160px; height: 195px; }
-          .photo-img-wrap { width: 160px; height: 195px; }
-          .milestones-row { max-width: 180px; }
-          .trustee-stats { flex-direction: column; }
-          .trustee-stat-item { min-width: unset; }
+          .fs-wrap { padding: 0 1rem; }
+          .members-grid { grid-template-columns: 1fr; }
+          .photo-img-wrap { width: 165px; height: 210px; }
+          .fc-right { padding: 1.5rem 1.25rem; }
+          .et-right { padding: 1.75rem 1.25rem; }
+          .et-left { padding: 1.75rem 1.25rem; }
+          .trustee-wrap { border-radius: 18px; }
+          .trustee-inner { border-radius: 16px; }
+          .member-photo-area { height: 300px; }
         }
       `}</style>
 
-      {/* ── MAIN SECTION ── */}
-      <section className="founder-section">
-        <div className="founder-wrapper">
+      <section className="fs-root">
+        <div className="fs-bg-blob1" />
+        <div className="fs-bg-blob2" />
+        <div className="fs-bg-grid" />
 
-          {/* FOUNDER ROW */}
-          <div className="founder-row">
+        <div className="fs-wrap">
 
-            {/* Photo + Milestones */}
+          {/* ════ FOUNDER HERO ════ */}
+          <div className="founder-hero">
             <div className="photo-col">
-              <div className="photo-frame">
-                <div className="photo-ring-outer" />
-                <div className="photo-ring-inner" />
+              <div className="photo-outer-ring">
                 <div className="photo-img-wrap">
-                  <img src="/image/img1.jpeg" alt="Ramnandan Mishra" />
+                  <img src="/image/img1.jpeg" alt="Shri Ramnandan Mishra" />
                 </div>
               </div>
-              <div className="photo-badge">
-                <span>Freedom Fighter · 1905–1989</span>
+              <div className="photo-name-tag">
+                <span className="pnt-name">Shri Ramnandan Mishra</span>
+                <span className="pnt-years">Our Inspiration · 1905–1989</span>
               </div>
               <div className="milestones-row">
                 {milestones.map((m) => (
@@ -530,75 +447,133 @@ export default function FounderSection() {
               </div>
             </div>
 
-            {/* Text + Timeline */}
             <div className="text-col">
-              <span className="tag">Our Inspiration</span>
-              <h2>
-                Shri{" "}
-                <em style={{ fontStyle: "italic", fontWeight: 600, color: "#fbbf24" }}>
-                  Ramnandan Mishra
-                </em>
-              </h2>
-              <div className="timeline">
-                {timelineItems.map((item, i) => (
-                  <div
-                    key={i}
-                    className="timeline-item"
-                    style={{ paddingBottom: i < timelineItems.length - 1 ? "1.1rem" : 0 }}
-                  >
-                    <div className="timeline-dot" />
-                    <p className="timeline-year">{item.year}</p>
-                    <p className="timeline-text">{item.text}</p>
-                  </div>
+              <span className="fs-chip">Our Inspiration</span>
+              <h2 className="hero-title">Shri <em>Ramnandan Mishra</em></h2>
+              <p className="hero-sub">A legacy forged in courage, sacrifice, and devotion</p>
+              <div className="tl-grid">
+                {timelineItems.map((item, i) => {
+                  const isLast = i === timelineItems.length - 1;
+                  const isOdd = timelineItems.length % 2 !== 0;
+                  return (
+                    <div
+                      key={i}
+                      className={`tl-card${isLast && isOdd ? " tl-full" : ""}`}
+                      style={{ borderColor: item.accent + "28" }}
+                    >
+                      <span className="tl-card-bar" style={{ background: item.accent, opacity: 0.75 }} />
+                      <div className="tl-top">
+                        <div className="tl-icon" style={{ background: item.accent + "20", color: item.accent }}>{item.icon}</div>
+                        <div>
+                          <p className="tl-year" style={{ color: item.accent }}>{item.year}</p>
+                          <p className="tl-label" style={{ color: item.accent }}>{item.label}</p>
+                        </div>
+                      </div>
+                      <p className="tl-text">{item.text}</p>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+
+          {/* ════ ABOUT FOUNDER ════ */}
+          <div className="sec-div">
+            <div className="sec-div-line" />
+            <span className="sec-div-text">◆ About the Founder ◆</span>
+            <div className="sec-div-line" />
+          </div>
+
+          <div className="founder-card">
+            <div className="fc-left">
+              <div className="fc-photo">
+                <img src="/image/img4.jpeg" alt="Late Dr. N.P. Mishra" />
+              </div>
+              <span className="fc-badge">Founder of the Trust</span>
+            </div>
+            <div className="fc-right">
+              <p className="fc-eyebrow">The Man Behind the Mission</p>
+              <h3 className="fc-name">Late Dr. N.P. Mishra</h3>
+              <p className="fc-title">MMBS(Hons) · MD · FRCP (Edin) · FAMS · Darbhanga, Bihar</p>
+              <div className="fc-divider" />
+              <p className="fc-bio">
+                Late Dr. N.P. Mishra was a distinguished physician and the visionary Founder of this Trust. With his deep-rooted commitment to society and an abiding belief in service, he established this institution to carry forward a mission of education, welfare, and community upliftment. His life and values continue to be the guiding light of everything we do.
+              </p>
+              <div className="fc-tags">
+                {["Physician", "Visionary", "Philanthropist", "Social Reformer", "Bihar Icon"].map((tag) => (
+                  <span key={tag} className="fc-pill">{tag}</span>
                 ))}
               </div>
             </div>
           </div>
 
-          {/* DIVIDER */}
-          <div className="section-divider">
-            <div className="divider-line" />
-            <span className="divider-text">Leadership</span>
-            <div className="divider-line" />
+          {/* ════ LEADERSHIP ════ */}
+          <div className="sec-div">
+            <div className="sec-div-line" />
+            <span className="sec-div-text">◆ Executive Trustee ◆</span>
+            <div className="sec-div-line" />
           </div>
 
-          {/* TRUSTEE CARD */}
-          <div className="trustee-border">
+          <div className="trustee-wrap">
             <div className="trustee-inner">
-
-              {/* Left panel */}
-              <div className="trustee-left">
-                <div className="trustee-photo">
+              <div className="et-left">
+                <div className="et-photo">
                   <img src="/image/trustee-image.jpeg" alt="Dr. Prof. Abhaya Raghava Mishra" />
                 </div>
-                <span className="trustee-badge">Executive Trustee</span>
-                <div className="trustee-stats">
+                <span className="et-badge">Executive Trustee</span>
+                <div className="et-focus-list">
                   {["Academic Leadership", "Community Welfare", "Women Empowerment"].map((s) => (
-                    <div key={s} className="trustee-stat-item">
-                      <span className="trustee-stat-icon">✦</span>
-                      <span className="trustee-stat-label">{s}</span>
+                    <div key={s} className="et-focus-item">
+                      <span className="et-focus-dot" />
+                      <span className="et-focus-text">{s}</span>
                     </div>
                   ))}
                 </div>
               </div>
-
-              {/* Right panel */}
-              <div className="trustee-right">
-                <p className="trustee-tag">Meet Our Leadership</p>
-                <h3 className="trustee-name">Dr. Prof. Abhaya Raghava Mishra</h3>
-                <p className="trustee-title">Executive Trustee, Ramnandan Mishra Mission Trust</p>
-                <div className="trustee-divider" />
-                <p className="trustee-bio">
+              <div className="et-right">
+                <p className="et-tag">Meet Our Leadership</p>
+                <h3 className="et-name">Dr. Prof. Abhaya Raghava Mishra</h3>
+                <p className="et-title">Executive Trustee, Ramnandan Mishra Mission Trust</p>
+                <div className="et-divider" />
+                <p className="et-bio">
                   Dr. Prof. Abhaya Raghava Mishra leads the trust's vision with academic rigour and deep social commitment. As Executive Trustee, he steers the organisation's programs in education, community welfare, and women empowerment — carrying forward the ideals of Shri Ramnandan Mishra for a new generation.
                 </p>
-                <div className="trustee-tags">
-                  {["Academic", "Social Reformer", "Community Leader"].map((tag) => (
-                    <span key={tag} className="trustee-tag-pill">{tag}</span>
+                <div className="et-pills">
+                  {["Academic", "Social Reformer", "Community Leader", "Visionary"].map((tag) => (
+                    <span key={tag} className="et-pill">{tag}</span>
                   ))}
                 </div>
               </div>
-
             </div>
+          </div>
+
+          {/* ════ TEAM ════ */}
+          <div className="sec-div">
+            <div className="sec-div-line" />
+            <span className="sec-div-text">◆ Advisory Board of Trustees ◆</span>
+            <div className="sec-div-line" />
+          </div>
+
+          <div className="members-grid">
+            {trustees.map((member) => (
+              <div key={member.name} className="member-card">
+                <div className="member-photo-area">
+                  <img src={member.image} alt={member.name} />
+                </div>
+                <div className="member-body">
+                  <span className="member-role-badge">{member.role}</span>
+                  <h4 className="member-name">{member.name}</h4>
+                  <p className="member-title-text">{member.title}</p>
+                  <div className="member-divider" />
+                  <p className="member-bio">{member.bio}</p>
+                  <div className="member-tags">
+                    {member.tags.map((tag) => (
+                      <span key={tag} className="member-tag">{tag}</span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
 
         </div>

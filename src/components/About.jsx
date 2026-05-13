@@ -5,7 +5,7 @@ export default function About({ onDonate }) {
   const checks = [
     `PAN: ${PAN}`,
     `DARPAN: ${DARPAN}`,
-    "Registered in Bihar",
+    "Registered in Bihar (1995)",
     `Bank: ${BANK}, ${BRANCH}`,
   ];
 
@@ -264,9 +264,7 @@ export default function About({ onDonate }) {
               ))}
             </div>
 
-            <button className="donate-btn" onClick={onDonate}>
-              Support Our Mission <ArrowRight size={16} />
-            </button>
+          
           </div>
 
         </div>

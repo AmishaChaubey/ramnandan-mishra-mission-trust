@@ -272,9 +272,9 @@ export default function Hero({ onDonate }) {
 
         {/* CTA Buttons */}
         <div className="hero-cta">
-          <button className="hero-btn-primary" onClick={onDonate}>
-            Donate Now <Heart size={16} />
-          </button>
+          <a href="#contact"><button className="hero-btn-primary" onClick={onDonate}>
+            Contact Now <Heart size={16} />
+          </button></a>
           <a href="#about" className="hero-btn-secondary">
             Learn Our Mission <ArrowRight size={16} />
           </a>

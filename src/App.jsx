@@ -14,7 +14,11 @@ import CtaBanner from "./components/CtaBanner";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 
+
 import DonateModal from './components/DonateModel'
+
+import CallIcon from "./components/Call";
+import DonateIcon from "./components/Icon";
 
 const App = () => {
   const [showDonate, setShowDonate] = useState(false);
@@ -31,11 +35,10 @@ const App = () => {
     <div>
       <TopBar />
 
-      {/* Navbar */}
+     
       <Navbar onDonate={openDonateModal} />
 
-      {/* Sections */}
-      <Hero onDonate={openDonateModal} />
+        <Hero/>
 
       <StatsBar />
 
@@ -49,18 +52,23 @@ const App = () => {
 
       <Testimonials />
 
-      {/* CTA */}
+  
       <CtaBanner onDonate={openDonateModal} />
 
       <Contact />
 
       <Footer onDonate={openDonateModal}  />
 
-      {/* Donate Modal */}
+    
       {showDonate && (
         <DonateModal onClose={closeDonateModal} />
       )}
+
+      <DonateIcon onDonate={openDonateModal} />
+      <CallIcon/>
     </div>
+   
+
   );
 };
 
