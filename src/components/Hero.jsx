@@ -39,7 +39,6 @@ export default function Hero({ onDonate }) {
         .hero-headline {
           font-family: 'Cormorant Garamond', serif;
           color: white;
-          /* Desktop max reduced from 5.5rem → 4.5rem */
           font-size: clamp(2rem, 6.5vw, 4.5rem);
           font-weight: 300;
           line-height: 1.05;
@@ -118,7 +117,6 @@ export default function Hero({ onDonate }) {
           position: relative;
           z-index: 10;
           max-width: 760px;
-          /* Reduced top padding on desktop so content sits more centred */
           padding: 1.5rem 3rem 3rem 5rem;
           text-align: left;
           width: 100%;
@@ -128,7 +126,7 @@ export default function Hero({ onDonate }) {
         /* ── TABLET  (≤ 1024px) ── */
         @media (max-width: 1024px) {
           .hero-content {
-            padding: 4rem 2.5rem 3rem 3rem;
+            padding: 3rem 2.5rem 3rem 3rem;
             max-width: 680px;
           }
           .hero-headline {
@@ -139,11 +137,10 @@ export default function Hero({ onDonate }) {
         /* ── SMALL TABLET  (≤ 768px) ── */
         @media (max-width: 768px) {
           .hero-content {
-            padding: 4.5rem 2rem 3rem 2rem;
+            padding: 3rem 1.75rem 2.5rem 1.75rem;
             max-width: 100%;
           }
           .hero-headline {
-            /* Larger floor value so it stays big on tablets */
             font-size: clamp(2.1rem, 6vw, 3.6rem);
             line-height: 1.08;
           }
@@ -159,22 +156,22 @@ export default function Hero({ onDonate }) {
         /* ── MOBILE  (≤ 480px) ── */
         @media (max-width: 480px) {
           .hero-content {
-            padding: 1.5rem 1.25rem 2.5rem 1.25rem;
+            padding: 1rem 1.25rem 2rem 1.25rem;
           }
           .hero-headline {
-            /* 2.4rem floor = ~38px — title stays prominent on any phone */
-            font-size: clamp(2.4rem, 9vw, 3.2rem);
+            font-size: clamp(2rem, 8.5vw, 2.8rem);
             line-height: 1.1;
-            margin-bottom: 1.2rem;
+            margin-bottom: 0.9rem;
           }
           .hero-tag {
-            font-size: 0.78rem;
+            font-size: 0.75rem;
             letter-spacing: 0.1em;
-            margin-bottom: 1rem;
+            margin-bottom: 0.75rem;
           }
           .hero-sub {
-            font-size: 0.9rem;
-            margin-bottom: 2rem;
+            font-size: 0.875rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.65;
             max-width: 100%;
           }
           .hero-cta {
@@ -194,15 +191,21 @@ export default function Hero({ onDonate }) {
         /* ── VERY SMALL  (≤ 360px) ── */
         @media (max-width: 360px) {
           .hero-content {
-            padding: 1.25rem 1rem 2rem 1rem;
+            padding: 0.75rem 1rem 1.75rem 1rem;
           }
           .hero-headline {
-            font-size: clamp(2rem, 9.5vw, 2.6rem);
+            font-size: clamp(1.8rem, 9vw, 2.4rem);
             line-height: 1.12;
+            margin-bottom: 0.75rem;
           }
           .hero-tag {
             font-size: 0.68rem;
             letter-spacing: 0.08em;
+            margin-bottom: 0.6rem;
+          }
+          .hero-sub {
+            font-size: 0.82rem;
+            margin-bottom: 1.25rem;
           }
           .hero-btn-primary,
           .hero-btn-secondary {
@@ -210,18 +213,18 @@ export default function Hero({ onDonate }) {
           }
         }
 
-        /* ── LANDSCAPE PHONES  (short + wide) ── */
+        /* ── LANDSCAPE PHONES ── */
         @media (max-height: 500px) and (orientation: landscape) {
           .hero-content {
-            padding-top: 5rem;
-            padding-bottom: 2rem;
+            padding-top: 4rem;
+            padding-bottom: 1.5rem;
           }
           .hero-headline {
             font-size: clamp(1.8rem, 5vw, 3rem);
             margin-bottom: 0.75rem;
           }
           .hero-sub {
-            margin-bottom: 1.25rem;
+            margin-bottom: 1rem;
           }
         }
       `}</style>
@@ -252,7 +255,6 @@ export default function Hero({ onDonate }) {
 
       {/* Content */}
       <div className="hero-content">
-        {/* Headline — big on every screen */}
         <h1 className="hero-headline">
           Ramnandan Mishra Mission Trust —{" "}
           <span style={{ fontStyle: "italic", fontWeight: 600, color: "#F5C842" }}>
@@ -260,21 +262,20 @@ export default function Hero({ onDonate }) {
           </span>
         </h1>
 
-        {/* Tag */}
         <p className="hero-tag">Honouring a Legacy, Building Tomorrow</p>
 
-        {/* Sub-text */}
         <p className="hero-sub">
           A registered trust dedicated to education, community welfare, and social
           upliftment — inspired by the life and values of freedom fighter Ramnandan
           Mishra (1905–1989).
         </p>
 
-        {/* CTA Buttons */}
         <div className="hero-cta">
-          <a href="#contact"><button className="hero-btn-primary" onClick={onDonate}>
-            Contact Now <Heart size={16} />
-          </button></a>
+          <a href="#contact">
+            <button className="hero-btn-primary" onClick={onDonate}>
+              Contact Now <Heart size={16} />
+            </button>
+          </a>
           <a href="#about" className="hero-btn-secondary">
             Learn Our Mission <ArrowRight size={16} />
           </a>
