@@ -10,7 +10,7 @@ export default function Hero({ onDonate }) {
         width: "100%",
         minHeight: "100vh",
         display: "flex",
-        alignItems: "center",
+        alignItems: "flex-start", // ← changed from center to flex-start
         justifyContent: "flex-start",
         overflow: "hidden",
       }}
@@ -21,7 +21,6 @@ export default function Hero({ onDonate }) {
           50%       { transform: translateX(-50%) translateY(-10px); }
         }
 
-        /* ── TAG ── */
         .hero-tag {
           font-family: 'Outfit', sans-serif;
           font-size: clamp(0.78rem, 2.2vw, 1.15rem);
@@ -35,7 +34,6 @@ export default function Hero({ onDonate }) {
           line-height: 1.5;
         }
 
-        /* ── HEADLINE ── */
         .hero-headline {
           font-family: 'Cormorant Garamond', serif;
           color: white;
@@ -49,7 +47,6 @@ export default function Hero({ onDonate }) {
           hyphens: auto;
         }
 
-        /* ── SUB-TEXT ── */
         .hero-sub {
           font-family: 'Outfit', sans-serif;
           color: #e2e8f0;
@@ -60,7 +57,6 @@ export default function Hero({ onDonate }) {
           text-align: left;
         }
 
-        /* ── BUTTONS ── */
         .hero-btn-primary {
           font-family: 'Outfit', sans-serif;
           font-weight: 600;
@@ -104,7 +100,6 @@ export default function Hero({ onDonate }) {
           color: #1e3a8a;
         }
 
-        /* ── CTA ROW ── */
         .hero-cta {
           display: flex;
           flex-wrap: wrap;
@@ -112,21 +107,22 @@ export default function Hero({ onDonate }) {
           justify-content: flex-start;
         }
 
-        /* ── CONTENT WRAPPER ── */
+        /* ── CONTENT WRAPPER — top padding reduced ── */
         .hero-content {
           position: relative;
           z-index: 10;
           max-width: 760px;
-          padding: 1.5rem 3rem 3rem 5rem;
+          padding: 6rem 3rem 3rem 5rem; /* ← was 1.5rem top, now 6rem to account for navbar */
           text-align: left;
           width: 100%;
           box-sizing: border-box;
+          margin-top: 0; /* ensure no extra push */
         }
 
         /* ── TABLET  (≤ 1024px) ── */
         @media (max-width: 1024px) {
           .hero-content {
-            padding: 3rem 2.5rem 3rem 3rem;
+            padding: 5rem 2.5rem 3rem 3rem;
             max-width: 680px;
           }
           .hero-headline {
@@ -137,7 +133,7 @@ export default function Hero({ onDonate }) {
         /* ── SMALL TABLET  (≤ 768px) ── */
         @media (max-width: 768px) {
           .hero-content {
-            padding: 3rem 1.75rem 2.5rem 1.75rem;
+            padding: 4.5rem 1.75rem 2.5rem 1.75rem;
             max-width: 100%;
           }
           .hero-headline {
@@ -156,7 +152,7 @@ export default function Hero({ onDonate }) {
         /* ── MOBILE  (≤ 480px) ── */
         @media (max-width: 480px) {
           .hero-content {
-            padding: 1rem 1.25rem 2rem 1.25rem;
+            padding: 4rem 1.25rem 2rem 1.25rem;
           }
           .hero-headline {
             font-size: clamp(2rem, 8.5vw, 2.8rem);
@@ -191,7 +187,7 @@ export default function Hero({ onDonate }) {
         /* ── VERY SMALL  (≤ 360px) ── */
         @media (max-width: 360px) {
           .hero-content {
-            padding: 0.75rem 1rem 1.75rem 1rem;
+            padding: 3.5rem 1rem 1.75rem 1rem;
           }
           .hero-headline {
             font-size: clamp(1.8rem, 9vw, 2.4rem);
@@ -276,7 +272,6 @@ export default function Hero({ onDonate }) {
               Contact Now <Heart size={16} />
             </button>
           </a>
-         
         </div>
       </div>
 
