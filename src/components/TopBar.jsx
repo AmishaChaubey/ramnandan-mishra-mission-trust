@@ -1,5 +1,6 @@
 // TopBar.jsx
 import { PAN, DARPAN, ADDRESS } from "./Constants";
+import { MapPin } from "lucide-react";
 
 export default function TopBar() {
   return (
@@ -82,21 +83,32 @@ export default function TopBar() {
         </div>
 
         {/* Right — Address (hidden on small screens) */}
-        <span
-          className="hidden md:inline"
-          style={{
-            fontFamily: "'Outfit', sans-serif",
-            fontSize: "0.64rem",
-            color: "#475569",
-            letterSpacing: "0.04em",
-            whiteSpace: "nowrap",
-            overflow: "hidden",
-            textOverflow: "ellipsis",
-            maxWidth: "420px",
-          }}
-        >
-          📍 {ADDRESS}
-        </span>
+   <span
+  className="hidden md:flex"
+  style={{
+    fontFamily: "'Outfit', sans-serif",
+    fontSize: "0.64rem",
+    color: "#94a3b8",
+    letterSpacing: "0.04em",
+    whiteSpace: "nowrap",
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+    maxWidth: "420px",
+    alignItems: "center",
+    gap: "5px",
+  }}
+>
+  <MapPin
+    size={12}
+    strokeWidth={2}
+    style={{
+      color: "#fbbf24",
+      flexShrink: 0,
+    }}
+  />
+
+  <span>{ADDRESS}</span>
+</span>
       </div>
     </div>
   );

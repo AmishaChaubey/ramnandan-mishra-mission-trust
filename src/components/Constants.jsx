@@ -23,7 +23,7 @@ export const DONATE_AMOUNTS = [501, 1001, 2101, 5001, 11001, 21001];
 export const PROGRAMS = [
   { title: "Education",    desc: "Building literacy and numeracy foundations for underprivileged students across rural Bihar.",           color: "from-amber-500 to-orange-600",  icon: "BookOpen"  },
   { title: "Skill Development",    desc: "Vocational training and workshops to prepare youth for employment and self-reliance.",                   color: "from-blue-500 to-indigo-600",   icon: "Lightbulb" },
-  { title: "Scholarship Support",  desc: "Financial aid for meritorious and economically weak students to continue higher education.",             color: "from-emerald-500 to-teal-600",  icon: "Globe"     },
+  { title: "Scholarship Support",  desc: "Financial aid for meritorious and economically weak students from all communities to continue higher education.",             color: "from-emerald-500 to-teal-600",  icon: "Globe"     },
   { title: "Community Welfare",    desc: "Health camps, nutrition drives and welfare programs for underserved families in Bihar.",                 color: "from-rose-500 to-pink-600",     icon: "Heart"     },
   { title: "Women Empowerment",    desc: "Self-help groups, awareness drives and livelihood programs focused on upliftment of women.",             color: "from-violet-500 to-purple-600", icon: "Target"    },
   { title: "Cultural Preservation",desc: "Honouring freedom fighters and promoting values of patriotism, ethics and national service.",           color: "from-cyan-500 to-sky-600",      icon: "Award"     },
