@@ -276,9 +276,7 @@ export default function Hero({ onDonate }) {
               Contact Now <Heart size={16} />
             </button>
           </a>
-          <a href="#about" className="hero-btn-secondary">
-            Learn Our Mission <ArrowRight size={16} />
-          </a>
+         
         </div>
       </div>
 
