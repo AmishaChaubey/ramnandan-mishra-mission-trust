@@ -30,7 +30,7 @@ export const PROGRAMS = [
 ];
 
 export const ACHIEVEMENTS = [
-  "Established in memory of freedom fighter Ramnandan Mishra (1905–1989)",
+  "Established in memory of freedom fighter Ramnandan Mishra (1906–1989)",
   "Registered under the Indian Trusts Act on 1995 at Darbhanga, Bihar, India.",
   `PAN Allotted: ${PAN} — officially recognised by the Income Tax Department`,
   `DARPAN ID: ${DARPAN} — listed on Niti Aayog's NGO portal`, 

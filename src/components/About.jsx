@@ -211,7 +211,7 @@ export default function About({ onDonate }) {
                   Ramnandan Mishra
                 </p>
                 <p style={{ fontFamily: "'Outfit',sans-serif", color: "#b45309", fontSize: "0.7rem", margin: "2px 0 0" }}>Freedom Fighter</p>
-                <p style={{ fontFamily: "'Outfit',sans-serif", color: "#9ca3af", fontSize: "0.68rem", margin: 0 }}>1905 – 1989</p>
+                <p style={{ fontFamily: "'Outfit',sans-serif", color: "#9ca3af", fontSize: "0.68rem", margin: 0 }}>1906 – 1989</p>
               </div>
             </div>
 

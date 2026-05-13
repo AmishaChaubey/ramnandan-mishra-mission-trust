@@ -263,7 +263,7 @@ export default function Hero({ onDonate }) {
         <p className="hero-sub">
           A registered trust dedicated to education, community welfare, and social
           upliftment — inspired by the life and values of freedom fighter Ramnandan
-          Mishra (1905–1989).
+          Mishra (1906–1989).
         </p>
 
         <div className="hero-cta">
