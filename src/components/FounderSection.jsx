@@ -53,7 +53,7 @@ export default function FounderSection() {
 
   const trustees = [
     {
-      name: "Dr. Prof.Vidya Nath Jha",
+      name: "Dr. Prof. Vidya Nath Jha",
       role: "Trustee",
       title: "Principal, M L S M College Darbhanga",
       image: "/image/img6.jpeg",
