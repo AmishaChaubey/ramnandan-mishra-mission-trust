@@ -1,7 +1,7 @@
 export default function FounderSection() {
   const timelineItems = [
     {
-      year: "1905",
+      year: "1906",
       label: "Born · Darbhanga",
       icon: "✦",
       accent: "#f5c842",
@@ -435,7 +435,7 @@ export default function FounderSection() {
               </div>
               <div className="photo-name-tag">
                 <span className="pnt-name">Shri Ramnandan Mishra</span>
-                <span className="pnt-years">Our Inspiration · 1905–1989</span>
+                <span className="pnt-years">Our Inspiration · 1906–1989</span>
               </div>
               <div className="milestones-row">
                 {milestones.map((m) => (
