@@ -518,7 +518,7 @@ export default function FounderSection() {
             <div className="trustee-inner">
               <div className="et-left">
                 <div className="et-photo">
-                  <img src="/image/trustee-image.jpeg" alt="Dr. Prof. Abhaya Raghava Mishra" />
+                  <img src="/image/trustee-image1.jpeg" alt="Dr. Prof. Abhaya Raghava Mishra" />
                 </div>
                 <span className="et-badge">Executive Trustee</span>
                 <div className="et-focus-list">
