@@ -17,7 +17,7 @@ import Footer from "./components/Footer";
 
 import DonateModal from './components/DonateModel'
 
-import DonateIcon from "./components/Icon";
+
 
 const App = () => {
   const [showDonate, setShowDonate] = useState(false);
@@ -52,18 +52,17 @@ const App = () => {
       <Testimonials />
 
   
-      <CtaBanner onDonate={openDonateModal} />
+      <CtaBanner/>
 
       <Contact />
 
-      <Footer onDonate={openDonateModal}  />
+      <Footer/>
 
     
       {showDonate && (
         <DonateModal onClose={closeDonateModal} />
       )}
 
-      <DonateIcon onDonate={openDonateModal} />
      
     </div>
    

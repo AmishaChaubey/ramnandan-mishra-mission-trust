@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { X, CheckCircle, Copy, Send } from "lucide-react";
+import { useState, useEffect } from "react";
+import { X, CheckCircle, Copy, Send, Heart } from "lucide-react";
 import { TRUST_NAME, PAN, DARPAN, ACCOUNT, IFSC, BANK, BRANCH, MOBILE, EMAIL } from "./Constants";
 
 const BANK_ROWS = [
@@ -11,296 +11,389 @@ const BANK_ROWS = [
   { label: "DARPAN ID",      value: DARPAN,               key: "darpan" },
 ];
 
-const F = "'Outfit', sans-serif";
-const S = "'Cormorant Garamond', serif";
-
 export default function DonateModal({ onClose }) {
-  const [copied, setCopied]   = useState("");
-  const [step, setStep]       = useState("form"); // "form" | "ack" | "done"
-  const [txnId, setTxnId]     = useState("");
-  const [txnSent, setTxnSent] = useState(false);
+  const [copied, setCopied] = useState("");
+  const [step, setStep]     = useState("form"); // "form" | "ack" | "done"
+  const [txnId, setTxnId]   = useState("");
+  const [sending, setSending] = useState(false);
+
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => { document.body.style.overflow = "auto"; };
+  }, []);
 
   const copy = (text, key) => {
-    navigator.clipboard.writeText(text);
+    navigator.clipboard.writeText(text).catch(() => {});
     setCopied(key);
     setTimeout(() => setCopied(""), 2000);
   };
 
-  const handleSubmit = () => setStep("ack");
-
-  const handleSendTxn = () => {
-    if (txnId.trim()) {
-      setTxnSent(true);
-      setTimeout(() => setStep("done"), 1000);
-    }
+  const handleSend = () => {
+    if (!txnId.trim()) return;
+    setSending(true);
+    setTimeout(() => { setSending(false); setStep("done"); }, 900);
   };
 
   return (
     <>
       <style>{`
-        .modal-backdrop {
-          position: fixed; inset: 0; z-index: 100;
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap');
+
+        .dm-modal-backdrop {
+          position: fixed; inset: 0; z-index: 9999;
           display: flex; align-items: center; justify-content: center;
           padding: 1rem;
-          background: rgba(10,15,40,0.90);
-          backdrop-filter: blur(8px);
+          background: rgba(6, 10, 26, 0.88);
+          backdrop-filter: blur(10px);
+          -webkit-backdrop-filter: blur(10px);
         }
-        .modal-card {
-          background: white; border-radius: 1.5rem;
-          width: 100%; max-width: 480px; max-height: 94vh;
-          display: flex; flex-direction: column;
-          box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+
+        .dm-card {
+          background: #ffffff;
+          border-radius: 20px;
+          width: 100%;
+          max-width: 460px;
+          max-height: 92vh;
+          display: flex;
+          flex-direction: column;
           overflow: hidden;
+          box-shadow: 0 32px 80px rgba(0,0,0,0.45), 0 0 0 0.5px rgba(255,255,255,0.06);
         }
-        .modal-header {
-          background: linear-gradient(135deg,#0f172a 0%,#1e3a8a 100%);
-          padding: 1.75rem 1.75rem 1.25rem;
-          flex-shrink: 0; position: relative;
+
+        .dm-head {
+          background: #0b1630;
+          padding: 1.5rem 1.5rem 1.25rem;
+          flex-shrink: 0;
+          position: relative;
         }
-        .modal-close-btn {
+
+        .dm-close {
           position: absolute; top: 1rem; right: 1rem;
-          width: 32px; height: 32px;
-          background: rgba(255,255,255,0.15); border: none; border-radius: 50%;
+          width: 30px; height: 30px;
+          background: rgba(255,255,255,0.1);
+          border: none; border-radius: 50%;
           display: flex; align-items: center; justify-content: center;
-          cursor: pointer; color: white; transition: background 0.2s;
+          cursor: pointer; color: rgba(255,255,255,0.75);
+          transition: background 0.2s;
+          padding: 0;
         }
-        .modal-close-btn:hover { background: rgba(255,255,255,0.28); }
-        .modal-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-        .modal-body { overflow-y: auto; flex: 1; padding: 1.5rem 1.75rem; }
-        .bank-row {
-          display: flex; align-items: center; justify-content: space-between;
-          background: #f9fafb; border: 1px solid #f3f4f6;
-          border-radius: 0.75rem; padding: 0.7rem 1rem;
+        .dm-close:hover { background: rgba(255,255,255,0.22); }
+
+        .dm-donate-label {
+          font-family: 'DM Sans', sans-serif;
+          font-size: 10px;
+          font-weight: 600;
+          letter-spacing: 0.14em;
+          text-transform: uppercase;
+          color: #7aa3d4;
+          margin: 0 0 3px;
         }
-        .copy-btn {
-          margin-left: 0.75rem; width: 32px; height: 32px;
-          border-radius: 0.5rem; border: none;
+
+        .dm-trust-name {
+          font-family: 'Playfair Display', serif;
+          color: #ffffff;
+          font-size: 1.2rem;
+          font-weight: 600;
+          margin: 0;
+          line-height: 1.25;
+        }
+
+        .dm-badges {
+          display: flex; flex-wrap: wrap; gap: 0.4rem;
+          margin-top: 0.875rem;
+        }
+
+        .dm-badge {
+          background: rgba(255,255,255,0.07);
+          border: 0.5px solid rgba(255,255,255,0.14);
+          border-radius: 6px;
+          padding: 0.25rem 0.6rem;
+          font-family: 'DM Sans', sans-serif;
+          font-size: 11px;
+        }
+        .dm-badge-label { color: #7aa3d4; font-weight: 500; }
+        .dm-badge-val   { color: rgba(255,255,255,0.9); font-weight: 600; margin-left: 3px; }
+
+        .dm-badge-gold {
+          background: rgba(184,134,11,0.2);
+          border-color: rgba(184,134,11,0.38);
+          color: #fbbf24;
+          font-family: 'DM Sans', sans-serif;
+          font-size: 11px;
+          font-weight: 600;
+          border-radius: 6px;
+          padding: 0.25rem 0.6rem;
+        }
+
+        .dm-body {
+          flex: 1;
+          
+          padding: 1.25rem 1.5rem 1.5rem;
+          scrollbar-width: none;
+          -ms-overflow-style: none;
+        }
+        .dm-body::-webkit-scrollbar { display: none; }
+
+        .dm-section-label {
+          font-family: 'DM Sans', sans-serif;
+          font-size: 10px;
+          font-weight: 600;
+          letter-spacing: 0.14em;
+          text-transform: uppercase;
+          color: #9ca3af;
+          margin: 0 0 0.625rem;
+        }
+
+        .dm-bank-list {
+          display: flex; flex-direction: column; gap: 0.375rem;
+          margin-bottom: 1rem;
+        }
+
+        .dm-bank-row {
+          display: flex; align-items: center; gap: 0.625rem;
+          background: #f9fafb;
+          border: 0.5px solid #f0f0f0;
+          border-radius: 10px;
+          padding: 0.3rem 0.85rem;
+        }
+
+        .dm-row-text { flex: 1; min-width: 0; }
+        .dm-row-label {
+          font-family: 'DM Sans', sans-serif;
+          font-size: 10px;
+          color: #9ca3af;
+          text-transform: uppercase;
+          letter-spacing: 0.08em;
+          margin: 0 0 2px;
+        }
+        .dm-row-val {
+          font-family: 'DM Sans', sans-serif;
+          font-size: 14px;
+          font-weight: 600;
+          color: #111827;
+          margin: 0;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
+        .dm-copy-btn {
+          flex-shrink: 0;
+          width: 30px; height: 30px;
+          border: 0.5px solid #e5e7eb;
+          border-radius: 8px;
+          background: #ffffff;
+          color: #9ca3af;
           display: flex; align-items: center; justify-content: center;
-          flex-shrink: 0; cursor: pointer; transition: all 0.2s;
+          cursor: pointer;
+          transition: all 0.18s;
+          padding: 0;
         }
-        .submit-btn {
-          width: 100%; padding: 0.9rem; border-radius: 0.875rem; border: none;
-          background: linear-gradient(135deg,#B8860B,#9a7209);
-          color: white; font-family: 'Outfit', sans-serif;
-          font-size: 1rem; font-weight: 700; cursor: pointer;
-          display: flex; align-items: center; justify-content: center;
-          gap: 0.5rem; transition: all 0.2s;
-          box-shadow: 0 4px 15px rgba(184,134,11,0.35); margin-top: 1rem;
+        .dm-copy-btn:hover { background: #f3f4f6; color: #374151; }
+        .dm-copy-btn.copied { border-color: #bbf7d0; background: #f0fdf4; color: #16a34a; }
+
+        .dm-divider {
+          border: none;
+          border-top: 0.5px solid #f0f0f0;
+          margin: 0.875rem 0;
         }
-        .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(184,134,11,0.45); }
-        .submit-btn:active { transform: translateY(0); }
-        .txn-input {
+
+        .dm-info-box {
+          background: #fffbeb;
+          border: 0.5px solid #fde68a;
+          border-radius: 10px;
+          padding: 0.75rem 1rem;
+          margin-bottom: 1rem;
+        }
+        .dm-info-head {
+          font-family: 'DM Sans', sans-serif;
+          font-size: 11px;
+          font-weight: 600;
+          color: #92400e;
+          margin: 0 0 4px;
+        }
+        .dm-info-line {
+          font-family: 'DM Sans', sans-serif;
+          font-size: 13px;
+          color: #78350f;
+          margin: 2px 0;
+        }
+
+        .dm-btn-primary {
+          width: 100%;
+          padding: 0.8rem;
+          border: none; border-radius: 10px;
+          background: #0b1630;
+          color: #ffffff;
+          font-family: 'DM Sans', sans-serif;
+          font-size: 14px; font-weight: 600;
+          cursor: pointer;
+          display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+          transition: background 0.2s, transform 0.15s;
+          letter-spacing: 0.02em;
+        }
+        .dm-btn-primary:hover { background: #1e3a6e; transform: translateY(-1px); }
+        .dm-btn-primary:active { transform: translateY(0); }
+
+        .dm-txn-input {
           width: 100%; box-sizing: border-box;
-          border: 2px solid #e5e7eb; border-radius: 0.75rem;
-          padding: 0.75rem 1rem; font-family: 'Outfit', sans-serif;
-          font-size: 0.9rem; color: #111827; outline: none;
-          transition: border-color 0.2s; margin-bottom: 0.75rem;
+          border: 0.5px solid #e5e7eb;
+          border-radius: 10px;
+          padding: 0.7rem 0.875rem;
+          font-family: 'DM Sans', sans-serif;
+          font-size: 14px;
+          color: #111827;
+          outline: none;
+          margin-bottom: 0.75rem;
+          transition: border-color 0.2s;
         }
-        .txn-input:focus { border-color: #B8860B; }
-        .send-btn {
-          width: 100%; padding: 0.8rem; border-radius: 0.75rem; border: none;
-          background: #0f172a; color: white;
-          font-family: 'Outfit', sans-serif; font-size: 0.9rem; font-weight: 700;
-          cursor: pointer; display: flex; align-items: center;
-          justify-content: center; gap: 0.5rem;
-          transition: background 0.2s; margin-bottom: 0.5rem;
+        .dm-txn-input:focus { border-color: #0b1630; }
+        .dm-txn-input::placeholder { color: #d1d5db; }
+
+        .dm-btn-send {
+          width: 100%;
+          padding: 0.78rem;
+          border: none; border-radius: 10px;
+          background: #B8860B;
+          color: #ffffff;
+          font-family: 'DM Sans', sans-serif;
+          font-size: 14px; font-weight: 600;
+          cursor: pointer;
+          display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+          transition: background 0.2s, transform 0.15s;
+          margin-bottom: 0.5rem;
         }
-        .send-btn:hover { background: #1e3a8a; }
-        .send-btn:disabled { background: #9ca3af; cursor: not-allowed; }
-        .skip-btn {
-          background: none; border: none; color: #9ca3af;
-          font-family: 'Outfit', sans-serif; font-size: 0.8rem;
-          cursor: pointer; text-decoration: underline; display: block; margin: 0 auto;
+        .dm-btn-send:hover:not(:disabled) { background: #9a7209; transform: translateY(-1px); }
+        .dm-btn-send:active:not(:disabled) { transform: translateY(0); }
+        .dm-btn-send:disabled { background: #e5e7eb; color: #9ca3af; cursor: not-allowed; }
+
+        .dm-skip-btn {
+          background: none; border: none;
+          color: #9ca3af;
+          font-family: 'DM Sans', sans-serif;
+          font-size: 12px;
+          cursor: pointer;
+          text-decoration: underline;
+          display: block; margin: 0 auto;
+          transition: color 0.2s;
         }
-        .skip-btn:hover { color: #6b7280; }
-        @media (max-width: 520px) {
-          .modal-backdrop { padding: 0; align-items: flex-end; }
-          .modal-card { max-width: 100%; max-height: 96vh; border-radius: 1.5rem 1.5rem 0 0; }
-          .modal-header { padding: 1.25rem 1.25rem 1rem; }
-          .modal-body { padding: 1.25rem; }
+        .dm-skip-btn:hover { color: #6b7280; }
+
+        .dm-ack-note {
+          font-family: 'DM Sans', sans-serif;
+          font-size: 13px;
+          color: #6b7280;
+          line-height: 1.6;
+          margin: 0 0 1rem;
+        }
+
+        .dm-done-wrap {
+          text-align: center;
+          padding: 1.25rem 0 0.5rem;
+        }
+        .dm-done-icon {
+          width: 52px; height: 52px;
+          border-radius: 50%;
+          background: #f0fdf4;
+          border: 2px solid #bbf7d0;
+          display: flex; align-items: center; justify-content: center;
+          margin: 0 auto 1rem;
+          color: #16a34a;
+        }
+        .dm-done-title {
+          font-family: 'Playfair Display', serif;
+          font-size: 1.3rem;
+          font-weight: 600;
+          color: #111827;
+          margin: 0 0 0.5rem;
+        }
+        .dm-done-sub {
+          font-family: 'DM Sans', sans-serif;
+          font-size: 13px;
+          color: #6b7280;
+          line-height: 1.65;
+          margin: 0 0 1.5rem;
+        }
+
+        @media (max-width: 500px) {
+          .dm-modal-backdrop {
+            padding: 0;
+            align-items: flex-end;
+          }
+          .dm-card {
+            max-width: 100%;
+            max-height: 96vh;
+            border-radius: 18px 18px 0 0;
+          }
+          .dm-head { padding: 1.25rem 1.25rem 1rem; }
+          .dm-body { padding: 1.1rem 1.25rem 1.5rem; }
+          .dm-trust-name { font-size: 1.1rem; }
         }
       `}</style>
 
-      <div className="modal-backdrop" onClick={e => { if (e.target === e.currentTarget) onClose(); }}>
-        <div className="modal-card">
+      <div
+        className="dm-modal-backdrop"
+        onClick={e => { if (e.target === e.currentTarget) onClose(); }}
+      >
+        <div className="dm-card">
 
           {/* ── HEADER ── */}
-          <div className="modal-header">
-            <button className="modal-close-btn" onClick={onClose}><X size={16} /></button>
-            <div style={{ display:"flex", alignItems:"center", gap:"0.875rem", marginBottom:"1rem" }}>
-              <div>
-                <p style={{ fontFamily:F, fontSize:"0.62rem", letterSpacing:"0.14em", textTransform:"uppercase", color:"#fbbf24", fontWeight:600, margin:0 }}>
-                  Donate to
-                </p>
-                <p style={{ fontFamily:S, color:"white", fontSize:"1.1rem", fontWeight:600, lineHeight:1.2, margin:"2px 0 0" }}>
-                  {TRUST_NAME}
-                </p>
-              </div>
-            </div>
-            <div className="modal-chips">
-              {[["PAN", PAN], ["DARPAN", DARPAN], ["Bihar Govt. Reg.", ""]].map(([k, v]) => (
-                <div key={k} style={{ background:"rgba(255,255,255,0.09)", borderRadius:"0.5rem", padding:"0.3rem 0.7rem" }}>
-                  <span style={{ fontFamily:F, fontSize:"0.6rem", color:"#93c5fd", letterSpacing:"0.08em", textTransform:"uppercase" }}>{k}: </span>
-                  <span style={{ fontFamily:F, fontSize:"0.68rem", color:"white", fontWeight:700 }}>{v || "✔"}</span>
+          <div className="dm-head">
+            <button className="dm-close" onClick={onClose} aria-label="Close">
+              <X size={14} />
+            </button>
+            <p className="dm-donate-label">Donate to</p>
+            <p className="dm-trust-name">{TRUST_NAME}</p>
+            <div className="dm-badges">
+              {[["PAN", PAN], ["DARPAN", DARPAN]].map(([k, v]) => (
+                <div key={k} className="dm-badge">
+                  <span className="dm-badge-label">{k}</span>
+                  <span className="dm-badge-val">{v}</span>
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="modal-body">
+          {/* ── BODY ── */}
+          <div className="dm-body">
 
-            {/* ═══════════════ STEP 1 — BANK DETAILS ═══════════════ */}
+            {/* ── STEP 1: Bank Details ── */}
             {step === "form" && (
               <>
-                <p style={{ fontFamily:F, fontSize:"0.65rem", color:"#9ca3af", letterSpacing:"0.14em", textTransform:"uppercase", marginBottom:"0.75rem", fontWeight:600 }}>
-                  Bank Transfer Details
-                </p>
-
-                <div style={{ display:"flex", flexDirection:"column", gap:"0.5rem", marginBottom:"1.25rem" }}>
+                <p className="dm-section-label">Bank Transfer Details</p>
+                <div className="dm-bank-list">
                   {BANK_ROWS.map(({ label, value, key }) => (
-                    <div key={key} className="bank-row">
-                      <div style={{ minWidth:0, flex:1 }}>
-                        <p style={{ fontFamily:F, fontSize:"0.6rem", color:"#9ca3af", textTransform:"uppercase", letterSpacing:"0.08em", margin:"0 0 2px" }}>
-                          {label}
-                        </p>
-                        <p style={{ fontFamily:F, fontSize:"0.875rem", color:"#111827", fontWeight:700, margin:0, wordBreak:"break-all" }}>
-                          {value}
-                        </p>
+                    <div key={key} className="dm-bank-row">
+                      <div className="dm-row-text">
+                        <p className="dm-row-label">{label}</p>
+                        <p className="dm-row-val">{value}</p>
                       </div>
                       <button
-                        className="copy-btn"
+                        className={`dm-copy-btn${copied === key ? " copied" : ""}`}
                         onClick={() => copy(value, key)}
-                        style={{
-                          background: copied === key ? "#d1fae5" : "#e5e7eb",
-                          color: copied === key ? "#059669" : "#6b7280",
-                        }}
+                        title={`Copy ${label}`}
                       >
-                        {copied === key ? <CheckCircle size={14} /> : <Copy size={14} />}
+                        {copied === key ? <CheckCircle size={13} /> : <Copy size={13} />}
                       </button>
                     </div>
                   ))}
                 </div>
 
-                <div style={{ background:"#fffbeb", border:"1px solid #fde68a", borderRadius:"0.75rem", padding:"0.85rem 1rem", marginBottom:"1.25rem" }}>
-                  <p style={{ fontFamily:F, fontSize:"0.8rem", color:"#78350f", lineHeight:1.65, margin:0 }}>
-                    💡 After transfer, share your transaction ID to{" "}
-                    <strong>+91 {MOBILE}</strong> or <strong>{EMAIL}</strong>
-                  </p>
+                <hr className="dm-divider" />
+
+                <div className="dm-info-box">
+                  <p className="dm-info-head">💡 After transfer, share your transaction ID</p>
+                  <p className="dm-info-line"><strong>{EMAIL}</strong></p>
+                  <p className="dm-info-line"><strong>+91 {MOBILE}</strong></p>
                 </div>
 
-                <button className="submit-btn" onClick={handleSubmit}>
-                  I've Made the Transfer — Continue
-                </button>
-
-                <p style={{ fontFamily:F, fontSize:"0.73rem", color:"#9ca3af", textAlign:"center", lineHeight:1.65, margin:"0.75rem 0 0" }}>
-                  Donations may be eligible for 80G tax exemption.<br />
-                  Contact us for your exemption certificate.
-                </p>
+              
               </>
             )}
 
-            {/* ═══════════════ STEP 2 — ACKNOWLEDGMENT ═══════════════ */}
-            {step === "ack" && (
-              <div style={{ textAlign:"center", paddingTop:"0.5rem" }}>
-                <div style={{
-                  width:72, height:72,
-                  background:"linear-gradient(135deg,#d1fae5,#a7f3d0)",
-                  borderRadius:"50%", display:"flex", alignItems:"center",
-                  justifyContent:"center", margin:"0 auto 1.25rem",
-                  boxShadow:"0 0 0 10px #ecfdf5",
-                }}>
-                  <CheckCircle size={36} color="#059669" />
-                </div>
+               
 
-                <p style={{ fontFamily:S, fontSize:"1.6rem", fontWeight:700, color:"#111827", margin:"0 0 0.4rem" }}>
-                  Thank You! 🙏
-                </p>
-                <p style={{ fontFamily:F, fontSize:"0.95rem", color:"#6b7280", margin:"0 0 1.5rem", lineHeight:1.6 }}>
-                  Your contribution to {TRUST_NAME} will help build a better tomorrow.
-                </p>
-
-                <div style={{ borderTop:"1px dashed #e5e7eb", margin:"0 0 1.25rem" }} />
-
-                <p style={{ fontFamily:F, fontSize:"0.8rem", color:"#374151", fontWeight:600, margin:"0 0 0.4rem" }}>
-                  Share Your Transaction ID / UTR Number
-                </p>
-                <p style={{ fontFamily:F, fontSize:"0.75rem", color:"#9ca3af", margin:"0 0 0.75rem", lineHeight:1.5 }}>
-                  After completing the bank transfer, paste your transaction reference here so we can verify your donation quickly.
-                </p>
-
-                <input
-                  className="txn-input" type="text"
-                  placeholder="e.g. 123456789012 or UTR / Ref number"
-                  value={txnId}
-                  onChange={e => setTxnId(e.target.value)}
-                />
-
-                <button className="send-btn" onClick={handleSendTxn} disabled={!txnId.trim() || txnSent}>
-                  <Send size={16} />
-                  {txnSent ? "Submitting..." : "Submit Transaction ID"}
-                </button>
-
-                <button className="skip-btn" onClick={() => setStep("done")}>
-                  I'll share it later
-                </button>
-
-                <p style={{ fontFamily:F, fontSize:"0.7rem", color:"#d1d5db", margin:"1.25rem 0 0", lineHeight:1.6 }}>
-                  Donations may be eligible for 80G tax exemption.
-                </p>
-              </div>
-            )}
-
-            {/* ═══════════════ STEP 3 — DONE ═══════════════ */}
-            {step === "done" && (
-              <div style={{ textAlign:"center", padding:"1rem 0.5rem" }}>
-                <div style={{
-                  width:80, height:80,
-                  background:"linear-gradient(135deg,#fffbeb,#fef3c7)",
-                  borderRadius:"50%", display:"flex", alignItems:"center",
-                  justifyContent:"center", margin:"0 auto 1.25rem",
-                  fontSize:"2.5rem", boxShadow:"0 0 0 10px #fffbeb",
-                }}>
-                  🙏
-                </div>
-
-                <p style={{ fontFamily:S, fontSize:"1.7rem", fontWeight:700, color:"#111827", margin:"0 0 0.5rem" }}>
-                  Donation Confirmed!
-                </p>
-                <p style={{ fontFamily:F, fontSize:"0.9rem", color:"#6b7280", margin:"0 0 1.25rem", lineHeight:1.6 }}>
-                  Thank you for your generous support to {TRUST_NAME}.
-                </p>
-
-                {txnId.trim() && (
-                  <div style={{ background:"#f0fdf4", border:"1px solid #bbf7d0", borderRadius:"0.75rem", padding:"0.75rem 1rem", marginBottom:"1rem" }}>
-                    <p style={{ fontFamily:F, fontSize:"0.75rem", color:"#166534", margin:0, lineHeight:1.6 }}>
-                      ✅ Transaction ID <strong>{txnId}</strong> received.<br />
-                      We will verify and confirm within 24 hours.
-                    </p>
-                  </div>
-                )}
-
-                <div style={{ background:"#fffbeb", border:"1px solid #fde68a", borderRadius:"0.75rem", padding:"0.75rem 1rem", marginBottom:"1.25rem" }}>
-                  <p style={{ fontFamily:F, fontSize:"0.78rem", color:"#78350f", lineHeight:1.7, margin:0 }}>
-                    For your 80G exemption certificate, contact us:<br />
-                    <strong>+91 {MOBILE}</strong> · <strong>{EMAIL}</strong>
-                  </p>
-                </div>
-
-                <button
-                  onClick={onClose}
-                  style={{
-                    width:"100%", padding:"0.85rem", borderRadius:"0.875rem",
-                    border:"2px solid #e5e7eb", background:"white",
-                    fontFamily:F, fontSize:"0.9rem", fontWeight:600,
-                    color:"#374151", cursor:"pointer", transition:"all 0.2s",
-                  }}
-                  onMouseEnter={e => { e.target.style.background="#f9fafb"; e.target.style.borderColor="#d1d5db"; }}
-                  onMouseLeave={e => { e.target.style.background="white"; e.target.style.borderColor="#e5e7eb"; }}
-                >
-                  Close
-                </button>
-              </div>
-            )}
+        
 
           </div>
         </div>
