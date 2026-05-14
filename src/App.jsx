@@ -17,7 +17,6 @@ import Footer from "./components/Footer";
 
 import DonateModal from './components/DonateModel'
 
-import CallIcon from "./components/Call";
 import DonateIcon from "./components/Icon";
 
 const App = () => {
@@ -65,7 +64,7 @@ const App = () => {
       )}
 
       <DonateIcon onDonate={openDonateModal} />
-      <CallIcon/>
+     
     </div>
    
 
