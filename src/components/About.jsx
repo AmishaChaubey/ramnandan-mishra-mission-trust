@@ -1,4 +1,4 @@
-import { GraduationCap, CheckCircle, ArrowRight } from "lucide-react";
+import { CheckCircle } from "lucide-react";
 import { PAN, DARPAN, BANK, BRANCH } from "./Constants";
 
 export default function About({ onDonate }) {
@@ -27,8 +27,10 @@ export default function About({ onDonate }) {
           align-items: center;
         }
 
+        /* Wrapper holds extra space so badges don't overlap the image */
         .about-image-wrapper {
           position: relative;
+          padding: 3rem 1.5rem 2.5rem 1.5rem;
         }
 
         .about-image {
@@ -38,45 +40,36 @@ export default function About({ onDonate }) {
           object-fit: cover;
           box-shadow: 0 25px 60px rgba(0,0,0,0.18);
           display: block;
+          position: relative;
+          z-index: 1;
         }
 
+        /* Badge sits OUTSIDE the image, inside the padded wrapper */
         .founder-badge {
           position: absolute;
-          bottom: -1.5rem;
-          right: -1rem;
+          bottom: 0;
+          right: 0.5rem;
           background: white;
           border-radius: 1rem;
-          padding: 1rem 1.25rem;
+          padding: 0.85rem 1rem;
           box-shadow: 0 12px 40px rgba(0,0,0,0.14);
           border: 1px solid #f3f4f6;
           display: flex;
           align-items: center;
-          gap: 0.75rem;
-          max-width: 230px;
-          z-index: 2;
-        }
-
-        .founder-avatar {
-          width: 52px;
-          height: 52px;
-          border-radius: 50%;
-          background: #fef3c7;
-          border: 2px solid #fbbf24;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          flex-shrink: 0;
+          gap: 0.65rem;
+          max-width: 190px;
+          z-index: 3;
         }
 
         .est-badge {
           position: absolute;
-          top: -1.25rem;
-          left: -1.25rem;
+          top: 0;
+          left: 0.5rem;
           background: #0f172a;
           border-radius: 1rem;
-          padding: 1rem 1.25rem;
+          padding: 0.85rem 1.25rem;
           box-shadow: 0 12px 40px rgba(0,0,0,0.3);
-          z-index: 2;
+          z-index: 3;
         }
 
         .checks-grid {
@@ -87,7 +80,6 @@ export default function About({ onDonate }) {
         }
 
         .donate-btn {
-          font-family: "'Outfit',sans-serif";
           font-weight: 600;
           font-size: 0.9rem;
           background: #B8860B;
@@ -107,7 +99,7 @@ export default function About({ onDonate }) {
           transform: translateY(-1px);
         }
 
-        /* Tablet */
+        /* ── Tablet ── */
         @media (max-width: 900px) {
           .about-container {
             grid-template-columns: 1fr;
@@ -115,21 +107,18 @@ export default function About({ onDonate }) {
           }
 
           .about-image-wrapper {
-            max-width: 600px;
+            max-width: 580px;
             margin: 0 auto;
             width: 100%;
+            padding: 3rem 1.5rem 2.5rem 1.5rem;
           }
 
           .about-image {
-            height: 380px;
-          }
-
-          .est-badge {
-            display: block;
+            height: 400px;
           }
         }
 
-        /* Mobile */
+        /* ── Mobile ── */
         @media (max-width: 600px) {
           .about-section {
             padding: 3.5rem 0;
@@ -137,35 +126,38 @@ export default function About({ onDonate }) {
 
           .about-container {
             padding: 0 1rem;
-            gap: 2.5rem;
+            gap: 2rem;
           }
 
+          .about-image-wrapper {
+            padding: 2.75rem 1rem 2.25rem 1rem;
+            max-width: 100%;
+          }
+
+          /* CRITICAL: enough height so image is fully visible */
           .about-image {
-            height: 260px;
+            height: 240px;
           }
 
           .founder-badge {
+            bottom: 0;
             right: 0;
-            bottom: -1.25rem;
-            max-width: 200px;
-            padding: 0.75rem 1rem;
+            max-width: 165px;
+            padding: 0.65rem 0.75rem;
             gap: 0.5rem;
-          }
-
-          .founder-avatar {
-            width: 40px;
-            height: 40px;
+            border-radius: 0.75rem;
           }
 
           .est-badge {
-            top: -1rem;
-            left: -0.5rem;
-            padding: 0.75rem 1rem;
+            top: 0;
+            left: 0;
+            padding: 0.65rem 0.9rem;
+            border-radius: 0.75rem;
           }
 
           .checks-grid {
             grid-template-columns: 1fr;
-            gap: 0.6rem;
+            gap: 0.55rem;
           }
 
           .donate-btn {
@@ -174,18 +166,23 @@ export default function About({ onDonate }) {
           }
         }
 
-        /* Very small screens */
-        @media (max-width: 360px) {
+        /* ── Very small ── */
+        @media (max-width: 380px) {
+          .about-image-wrapper {
+            padding: 2.5rem 0.75rem 2rem 0.75rem;
+          }
+
+          .about-image {
+            height: 210px;
+          }
+
           .founder-badge {
-            position: static;
-            margin-top: 1rem;
-            max-width: 100%;
-            border-radius: 0.75rem;
+            max-width: 150px;
+            font-size: 0.78rem;
           }
 
           .est-badge {
-            top: -0.75rem;
-            left: -0.25rem;
+            padding: 0.55rem 0.75rem;
           }
         }
       `}</style>
@@ -193,53 +190,50 @@ export default function About({ onDonate }) {
       <section className="about-section" id="about">
         <div className="about-container">
 
-          {/* Left — image + floating cards */}
+          {/* Left — image + floating badges */}
           <div className="about-image-wrapper">
             <img
-              src="https://images.pexels.com/photos/7616700/pexels-photo-7616700.jpeg"
+              src="/image/about-img.jpeg"
               alt="Activity"
               className="about-image"
             />
 
-            {/* Founder badge */}
+            {/* Founder badge — sits in bottom padding zone */}
             <div className="founder-badge">
-              <div className="founder-avatar">
-                <GraduationCap size={24} style={{ color: "#92400e" }} />
-              </div>
               <div>
-                <p style={{ fontFamily: "'Cormorant Garamond',serif", color: "#111827", fontWeight: 600, fontSize: "0.9rem", margin: 0, lineHeight: 1.2 }}>
+                <p style={{ fontFamily: "'Cormorant Garamond',serif", color: "#111827", fontWeight: 600, fontSize: "0.88rem", margin: 0, lineHeight: 1.2 }}>
                   Ramnandan Mishra
                 </p>
-                <p style={{ fontFamily: "'Outfit',sans-serif", color: "#b45309", fontSize: "0.7rem", margin: "2px 0 0" }}>Freedom Fighter</p>
-                <p style={{ fontFamily: "'Outfit',sans-serif", color: "#9ca3af", fontSize: "0.68rem", margin: 0 }}>1906 – 1989</p>
+                <p style={{ fontFamily: "'Outfit',sans-serif", color: "#b45309", fontSize: "0.68rem", margin: "2px 0 0" }}>Freedom Fighter</p>
+                <p style={{ fontFamily: "'Outfit',sans-serif", color: "#9ca3af", fontSize: "0.65rem", margin: 0 }}>1906 – 1989</p>
               </div>
             </div>
 
-            {/* Est. badge */}
+            {/* Est. badge — sits in top padding zone */}
             <div className="est-badge">
-              <p style={{ fontFamily: "'Cormorant Garamond',serif", color: "#fbbf24", fontSize: "1.75rem", fontWeight: 700, margin: 0, lineHeight: 1 }}>Est.</p>
-              <p style={{ fontFamily: "'Outfit',sans-serif", color: "white", fontSize: "0.65rem", margin: "4px 0 0" }}>Darbhanga, Bihar</p>
+              <p style={{ fontFamily: "'Cormorant Garamond',serif", color: "#fbbf24", fontSize: "1rem", fontWeight: 700, margin: 0, lineHeight: 1 }}>
+                Established in 1995.
+              </p>
+              <p style={{ fontFamily: "'Outfit',sans-serif", color: "white", fontSize: "0.68rem", margin: "4px 0 0" }}>
+                Darbhanga, Bihar
+              </p>
             </div>
           </div>
 
           {/* Right — text */}
           <div>
-            {/* Tag */}
             <p style={{ fontFamily: "'Outfit',sans-serif", fontSize: "0.7rem", letterSpacing: "0.17em", textTransform: "uppercase", color: "#B8860B", fontWeight: 600, marginBottom: "0.75rem" }}>
               About The Trust
             </p>
 
-            {/* Heading */}
-            <h2
-              style={{
-                fontFamily: "'Cormorant Garamond',serif",
-                fontSize: "clamp(1.8rem, 4vw, 3rem)",
-                fontWeight: 300,
-                color: "#111827",
-                lineHeight: 1.2,
-                margin: "0 0 0.5rem",
-              }}
-            >
+            <h2 style={{
+              fontFamily: "'Cormorant Garamond',serif",
+              fontSize: "clamp(1.8rem, 4vw, 3rem)",
+              fontWeight: 300,
+              color: "#111827",
+              lineHeight: 1.2,
+              margin: "0 0 0.5rem",
+            }}>
               In Memory of a{" "}
               <span style={{ fontStyle: "italic", fontWeight: 600, color: "#B8860B" }}>
                 True Patriot
@@ -254,7 +248,6 @@ export default function About({ onDonate }) {
               The trust carries forward his values of service, education, and social justice — working for the welfare of underprivileged communities across Bihar through education, skill development, and community health programs.
             </p>
 
-            {/* Check grid */}
             <div className="checks-grid">
               {checks.map(item => (
                 <div key={item} style={{ display: "flex", alignItems: "center", gap: "8px" }}>
@@ -263,8 +256,6 @@ export default function About({ onDonate }) {
                 </div>
               ))}
             </div>
-
-          
           </div>
 
         </div>

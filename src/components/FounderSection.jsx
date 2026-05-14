@@ -531,9 +531,9 @@ export default function FounderSection() {
                 </div>
               </div>
               <div className="et-right">
-                <p className="et-tag">Meet Our Leadership</p>
+                <p className="et-tag">Executive Trustee, Ramnandan Mishra Mission Trust</p>
                 <h3 className="et-name">Dr. Prof. Abhaya Raghava Mishra</h3>
-                <p className="et-title">Executive Trustee, Ramnandan Mishra Mission Trust</p>
+                <p className="et-title"> Professor C M Science  College Darbhanga</p>
                 <div className="et-divider" />
                 <p className="et-bio">
                   Dr. Prof. Abhaya Raghava Mishra leads the trust's vision with academic rigour and deep social commitment. As Executive Trustee, he steers the organisation's programs in education, community welfare, and women empowerment — carrying forward the ideals of Shri Ramnandan Mishra for a new generation.
