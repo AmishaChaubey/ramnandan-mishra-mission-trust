@@ -189,7 +189,7 @@ export default function About({ onDonate }) {
         /* ── Very small ── */
         @media (max-width: 380px) {
           .about-image {
-            height: 185px;
+            height: 285px;
           }
           .about-section {
             padding: 2.5rem 0;
